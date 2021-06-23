@@ -1,7 +1,9 @@
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/dashboard_items.dart';
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/widgets/dashboard_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -11,6 +13,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  FlutterSecureStorage _storage = new FlutterSecureStorage();
+
+  void _logout() async {
+    await _storage.deleteAll();
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoutes.login, (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +36,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         actions: [
           PopupMenuButton<String>(
             offset: Offset(-20, 50),
+            onSelected: (value) {
+              if (value == "Logout") {
+                _logout();
+              }
+            },
             itemBuilder: (BuildContext context) {
               return ['Logout']
                   .map((String choice) => PopupMenuItem<String>(

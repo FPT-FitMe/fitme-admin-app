@@ -39,11 +39,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                   height: 100,
                 ),
               ),
-              Text("Xin chào",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(
+                "Xin chào",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 5),
-              Text("Vui lòng đăng nhập để tiếp tục",
-                  style: TextStyle(fontSize: 18, color: AppColors.grayText)),
+              Text(
+                "Vui lòng đăng nhập để tiếp tục",
+                style: TextStyle(fontSize: 18, color: AppColors.grayText),
+              ),
               Form(
                 key: _formKey,
                 child: Column(
@@ -145,7 +149,6 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
     setState(() {
       _isLoading = false;
     });
-    // TODO: navigate sang home va xoa stack
     Navigator.pushNamedAndRemoveUntil(
         context, AppRoutes.dashboard, (route) => false);
   }
