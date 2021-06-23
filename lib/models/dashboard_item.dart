@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 class DashboardItem {
   final String title;
   final IconData iconData;
+  final String route;
 
-  DashboardItem({required this.title, required this.iconData});
+  DashboardItem(
+      {required this.title, required this.iconData, required this.route});
 }

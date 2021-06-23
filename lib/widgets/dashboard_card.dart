@@ -12,7 +12,9 @@ class DashboardCard extends StatelessWidget {
       child: Card(
         child: InkWell(
           splashColor: AppColors.primary,
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, item.route);
+          },
           child: SizedBox(
             width: 250,
             height: 200,
