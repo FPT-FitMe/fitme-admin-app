@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   final _formKey = GlobalKey<FormState>();
   late LoginPresenter _presenter;
   bool _isLoading = false;
+  String _errorMessage = "";
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -63,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                         labelText: "Email",
                       ),
                       validator: MultiValidator([
-                        EmailValidator(errorText: "Email không hợp lệ"),
+                        // TODO: uncomment email validator when be fixed
+                        // EmailValidator(errorText: "Email không hợp lệ"),
                         RequiredValidator(errorText: "* Bắt buộc")
                       ]),
                     ),
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        labelText: "Password",
+                        labelText: "Mật khẩu",
                       ),
                       validator: RequiredValidator(errorText: "* Bắt buộc"),
                     ),
@@ -94,8 +96,14 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 30,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
+                      child: Text(
+                        _errorMessage,
+                        style: TextStyle(
+                          color: AppColors.red500,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -137,9 +145,11 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   }
 
   @override
-  void loginFail() {
+  void loginFail(error) {
+    print(error);
     setState(() {
       _isLoading = false;
+      _errorMessage = error.response!.data["message"];
     });
   }
 

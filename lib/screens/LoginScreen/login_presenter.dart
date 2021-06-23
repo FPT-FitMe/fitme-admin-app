@@ -16,7 +16,7 @@ class LoginPresenter {
           .login(email, password)
           .then((user) => {_loginView.loginSuccess()})
           .catchError((error) {
-        print(error);
+        _loginView.loginFail(error);
       });
     }
   }

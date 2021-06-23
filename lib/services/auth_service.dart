@@ -18,7 +18,10 @@ class AuthService implements AuthRepository {
     if (response.statusCode == 200) {
       await _storage.write(key: "userToken", value: response.data["jwt"]);
       return User();
+    } else if (response.statusCode == 403) {
+      throw Exception("Wrong username or password");
     } else {
+      print("Failed");
       throw Exception('Failed to login user');
     }
   }
