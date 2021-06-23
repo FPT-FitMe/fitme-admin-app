@@ -1,8 +1,6 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/repository/auth_repository.dart';
-import 'package:http/http.dart' as http;
 
 class AuthService implements AuthRepository {
   static const url = "https://jsonplaceholder.typicode.com/users/1";
@@ -10,10 +8,9 @@ class AuthService implements AuthRepository {
   @override
   Future<User> login() async {
     // TODO: implement login
-    final response = await http.get(Uri.parse(url));
+    final response = await Dio().get(url);
     if (response.statusCode == 200) {
-      print(response.body);
-      return User.fromJson(jsonDecode(response.body));
+      return User.fromJson(response.data);
     } else {
       throw Exception('Failed to login user');
     }

@@ -30,8 +30,8 @@ dependencies:
   form_field_validator: ^1.1.0
   community_material_icon: ^5.9.55
   fluttertoast: ^8.0.7
-  http: ^0.13.3
   flutter_launcher_icons: ^0.9.0
+  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:

@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 20, right: 20),
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
     });
     // TODO: navigate sang home va xoa stack
     Navigator.pushNamedAndRemoveUntil(
-        context, AppRoutes.mainScreen, (route) => false);
+        context, AppRoutes.dashboard, (route) => false);
   }
 
   void submitForm() {
