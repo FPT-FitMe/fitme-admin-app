@@ -145,16 +145,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   }
 
   @override
-  void loginFail(error) {
-    print(error);
+  void loginFail(errorMessage) {
     setState(() {
       _isLoading = false;
-      _errorMessage = error.response!.data["message"];
+      _errorMessage = errorMessage;
     });
   }
 
   @override
-  void loginSuccess() {
+  void loginSuccess(user) {
     Fluttertoast.showToast(msg: "Thành công");
     setState(() {
       _isLoading = false;
