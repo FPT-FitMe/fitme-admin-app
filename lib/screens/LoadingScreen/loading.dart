@@ -8,6 +8,7 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircularProgressIndicator(
+        backgroundColor: Colors.white,
         valueColor: AlwaysStoppedAnimation(AppColors.primary),
       ),
     );

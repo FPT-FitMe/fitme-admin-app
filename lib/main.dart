@@ -1,3 +1,4 @@
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/screens/DashboardScreen/dashboard.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
 import 'package:fitme_admin_app/screens/LoginScreen/login.dart';
@@ -24,25 +25,20 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder(
         future: _checkUserLogin(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return LoadingScreen();
-          }
-          if (snapshot.data == false) {
+          if (snapshot.data != null) {
+            return DashboardScreen();
+          } else {
             return LoginScreen();
           }
-          return DashboardScreen();
         },
       ),
     );
   }
 
-  Future<bool> _checkUserLogin() async {
+  Future<String?> _checkUserLogin() async {
     FlutterSecureStorage _storage = new FlutterSecureStorage();
-    String? token = await _storage.read(key: "userToken");
-    print(token);
-    if (token == null) {
-      return false;
-    }
-    return true;
+    var userToken = await _storage.read(key: "userToken");
+    print("Token $userToken");
+    return userToken;
   }
 }

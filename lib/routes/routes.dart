@@ -7,6 +7,7 @@ import 'package:fitme_admin_app/screens/DetailUserScreen/detail_user.dart';
 import 'package:fitme_admin_app/screens/LoginScreen/login.dart';
 import 'package:fitme_admin_app/screens/MealScreen/meal.dart';
 import 'package:fitme_admin_app/screens/PostScreen/post.dart';
+import 'package:fitme_admin_app/screens/SearchUserScreen/search_user.dart';
 import 'package:fitme_admin_app/screens/TagScreen/tag.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user.dart';
 import 'package:fitme_admin_app/screens/WorkoutScreen/workout.dart';

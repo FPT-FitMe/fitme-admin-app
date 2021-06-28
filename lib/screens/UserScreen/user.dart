@@ -2,6 +2,7 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
+import 'package:fitme_admin_app/screens/SearchUserScreen/search_user.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_presenter.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_view.dart';
 import 'package:flutter/material.dart';
@@ -40,17 +41,11 @@ class _UserScreenState extends State<UserScreen> implements UserView {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: SearchUserScreen());
+            },
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: AppColors.primary,
       ),
       body: _isLoading == true
           ? LoadingScreen()
