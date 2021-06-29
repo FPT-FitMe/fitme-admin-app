@@ -2,16 +2,16 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
-import 'package:fitme_admin_app/screens/UserScreen/SearchUserScreen/search_user_presenter.dart';
-import 'package:fitme_admin_app/screens/UserScreen/SearchUserScreen/search_user_view.dart';
+import 'package:fitme_admin_app/screens/UserScreen/SearchUserDelegate/search_user_presenter.dart';
+import 'package:fitme_admin_app/screens/UserScreen/SearchUserDelegate/search_user_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchUserScreen extends SearchDelegate implements SearchUserView {
+class SearchUserDelegate extends SearchDelegate implements SearchUserView {
   late SearchUserPresenter _presenter;
 
-  SearchUserScreen() {
+  SearchUserDelegate() {
     _presenter = new SearchUserPresenter(this);
   }
   @override

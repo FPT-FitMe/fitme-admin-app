@@ -2,6 +2,7 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/workout.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/CreateWorkoutDialog/create_workout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -32,7 +33,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => CreateWorkoutDialog(),
+          );
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
