@@ -2,7 +2,7 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
-import 'package:fitme_admin_app/screens/SearchUserScreen/search_user.dart';
+import 'package:fitme_admin_app/screens/UserScreen/SearchUserScreen/search_user.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_presenter.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_view.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +22,6 @@ class _UserScreenState extends State<UserScreen> implements UserView {
 
   _UserScreenState() {
     _presenter = new UserPresenter(this);
-  }
-
-  @override
-  void initState() {
-    super.initState();
     _presenter.loadAllUsers();
   }
 

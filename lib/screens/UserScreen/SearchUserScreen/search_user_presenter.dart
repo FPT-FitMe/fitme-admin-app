@@ -1,7 +1,7 @@
 import 'package:fitme_admin_app/di/injection.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/repository/user_repository.dart';
-import 'package:fitme_admin_app/screens/SearchUserScreen/search_user_view.dart';
+import 'package:fitme_admin_app/screens/UserScreen/SearchUserScreen/search_user_view.dart';
 
 class SearchUserPresenter {
   SearchUserView _searchUserView;

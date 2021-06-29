@@ -2,8 +2,8 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class CourseScreen extends StatelessWidget {
-  const CourseScreen({Key? key}) : super(key: key);
+class ExerciseScreen extends StatelessWidget {
+  const ExerciseScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class CourseScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Khóa tập"),
+        title: Text("Bài tập"),
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,

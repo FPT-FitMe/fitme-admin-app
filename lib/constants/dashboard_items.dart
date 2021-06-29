@@ -16,12 +16,12 @@ final List<DashboardItem> listDashboardItems = [
   DashboardItem(
     title: "Bài tập",
     iconData: CommunityMaterialIcons.arm_flex,
-    route: AppRoutes.workouts,
+    route: AppRoutes.exercises,
   ),
   DashboardItem(
     title: "Khóa tập",
     iconData: CommunityMaterialIcons.clipboard_list,
-    route: AppRoutes.courses,
+    route: AppRoutes.workouts,
   ),
   DashboardItem(
     title: "Món ăn",
