@@ -16,6 +16,7 @@ Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String,
     name: json['name'] as String,
     videoUrl: json['videoUrl'] as String,
+    isChecked: json['isChecked'] as bool?,
   );
 }
 
@@ -28,4 +29,5 @@ Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'videoUrl': instance.videoUrl,
+      'isChecked': instance.isChecked,
     };

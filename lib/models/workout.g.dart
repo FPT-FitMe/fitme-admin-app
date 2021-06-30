@@ -12,10 +12,11 @@ Workout _$WorkoutFromJson(Map<String, dynamic> json) {
     description: json['description'] as String,
     estimatedCalories: (json['estimatedCalories'] as num).toDouble(),
     estimatedDuration: json['estimatedDuration'] as int,
-    imageUrl: json['imageUrl'] as String?,
+    imageUrl: json['imageUrl'] as String,
     isPremium: json['isPremium'] as bool,
     level: json['level'] as int,
     name: json['name'] as String,
+    coach: Coach.fromJson(json['coach'] as Map<String, dynamic>),
   );
 }
 
@@ -28,4 +29,5 @@ Map<String, dynamic> _$WorkoutToJson(Workout instance) => <String, dynamic>{
       'isPremium': instance.isPremium,
       'level': instance.level,
       'name': instance.name,
+      'coach': instance.coach,
     };

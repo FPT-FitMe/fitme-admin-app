@@ -1,16 +1,15 @@
-import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:flutter/material.dart';
 
-class CreateWorkoutDialog extends StatefulWidget {
-  const CreateWorkoutDialog({Key? key}) : super(key: key);
+class AddExerciseDialog extends StatefulWidget {
+  const AddExerciseDialog({Key? key}) : super(key: key);
 
   @override
-  _CreateWorkoutDialogState createState() => _CreateWorkoutDialogState();
+  _AddExerciseDialogState createState() => _AddExerciseDialogState();
 }
 
-class _CreateWorkoutDialogState extends State<CreateWorkoutDialog> {
+class _AddExerciseDialogState extends State<AddExerciseDialog> {
   bool _isSearching = false;
   @override
   Widget build(BuildContext context) {

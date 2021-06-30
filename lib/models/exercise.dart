@@ -22,6 +22,7 @@ class Exercise {
     required this.imageUrl,
     required this.name,
     required this.videoUrl,
+    this.isChecked = false,
   });
 
   factory Exercise.fromJson(Map<String, dynamic> json) =>

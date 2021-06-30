@@ -1,12 +1,10 @@
-import 'package:fitme_admin_app/constants/colors.dart';
-import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
 import 'package:fitme_admin_app/screens/UserScreen/SearchUserDelegate/search_user_delegate.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_presenter.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_view.dart';
+import 'package:fitme_admin_app/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -46,34 +44,8 @@ class _UserScreenState extends State<UserScreen> implements UserView {
           ? LoadingScreen()
           : ListView.builder(
               itemCount: listUsers.length,
-              itemBuilder: (context, index) => Slidable(
-                actionPane: SlidableDrawerActionPane(),
-                child: Container(
-                  color: Colors.white,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        listUsers[index].imageUrl != null
-                            ? listUsers[index].imageUrl.toString()
-                            : 'https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=635&q=80',
-                      ),
-                    ),
-                    title: Text(listUsers[index].username),
-                    subtitle: Text(
-                        '${listUsers[index].email} - ${listUsers[index].phone}'),
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.detailUser,
-                          arguments: listUsers[index]);
-                    },
-                  ),
-                ),
-                secondaryActions: <Widget>[
-                  IconSlideAction(
-                    caption: 'Delete',
-                    color: AppColors.red500,
-                    icon: Icons.delete,
-                  ),
-                ],
+              itemBuilder: (context, index) => UserListTile(
+                user: listUsers[index],
               ),
             ),
     );

@@ -1,13 +1,15 @@
 import 'package:fitme_admin_app/constants/colors.dart';
+import 'package:fitme_admin_app/fake_data.dart';
+import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/widgets/meal_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MealScreen extends StatelessWidget {
   const MealScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<String> tags = List<String>.generate(10, (i) => 'Item $i');
+    final List<Meal> listMeals = fakeListMeals;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,23 +33,8 @@ class MealScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
       ),
       body: ListView.builder(
-        itemCount: tags.length,
-        itemBuilder: (context, index) => Slidable(
-          actionPane: SlidableDrawerActionPane(),
-          child: Container(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(tags[index]),
-            ),
-          ),
-          secondaryActions: <Widget>[
-            IconSlideAction(
-              caption: 'Delete',
-              color: Colors.red,
-              icon: Icons.delete,
-            ),
-          ],
-        ),
+        itemCount: listMeals.length,
+        itemBuilder: (context, index) => MealListTile(meal: listMeals[index]),
       ),
     );
   }

@@ -1,10 +1,8 @@
-import 'package:community_material_icon/community_material_icon.dart';
-import 'package:fitme_admin_app/constants/colors.dart';
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/workout.dart';
-import 'package:fitme_admin_app/screens/WorkoutScreen/CreateWorkoutDialog/create_workout_dialog.dart';
+import 'package:fitme_admin_app/widgets/workout_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({Key? key}) : super(key: key);
@@ -34,10 +32,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => CreateWorkoutDialog(),
-          );
+          Navigator.pushNamed(context, AppRoutes.detailWorkout);
         },
         child: Icon(
           Icons.add,
@@ -46,38 +41,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       ),
       body: ListView.builder(
         itemCount: listWorkouts.length,
-        itemBuilder: (context, index) => Slidable(
-          key: ValueKey(listWorkouts[index].workoutID),
-          actionPane: SlidableDrawerActionPane(),
-          child: Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  listWorkouts[index].imageUrl != null
-                      ? listWorkouts[index].imageUrl.toString()
-                      : 'https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=635&q=80',
-                ),
-              ),
-              title: Text(listWorkouts[index].name),
-              subtitle: Text(
-                  '${listWorkouts[index].estimatedDuration} phút - ${listWorkouts[index].estimatedCalories.toInt()} kcals'),
-              trailing: listWorkouts[index].isPremium
-                  ? Icon(
-                      CommunityMaterialIcons.professional_hexagon,
-                      color: AppColors.textColor,
-                    )
-                  : null,
-              onTap: () {},
-            ),
-          ),
-          secondaryActions: <Widget>[
-            IconSlideAction(
-              caption: 'Delete',
-              color: AppColors.red500,
-              icon: Icons.delete,
-            ),
-          ],
+        itemBuilder: (context, index) => WorkoutListTile(
+          workout: listWorkouts[index],
         ),
       ),
     );
