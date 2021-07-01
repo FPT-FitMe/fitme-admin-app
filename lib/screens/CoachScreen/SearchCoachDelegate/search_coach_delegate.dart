@@ -1,15 +1,15 @@
-import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/models/coach.dart';
+import 'package:fitme_admin_app/widgets/coach_list_tile.dart';
 import 'package:fitme_admin_app/widgets/no_data_view.dart';
-import 'package:fitme_admin_app/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
 
-class SearchUserDelegate extends SearchDelegate {
-  List<User> listUsers;
+class SearchCoachDelegate extends SearchDelegate {
+  List<Coach> listCoaches;
 
-  SearchUserDelegate({required this.listUsers});
+  SearchCoachDelegate({required this.listCoaches});
 
   @override
-  String? get searchFieldLabel => "Nhập tên người dùng...";
+  String? get searchFieldLabel => "Nhâp tên huấn luyện viên...";
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -45,8 +45,10 @@ class SearchUserDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<User> results = listUsers
-        .where((user) => user.email.toLowerCase().contains(query.toLowerCase()))
+    List<Coach> results = listCoaches
+        .where((coach) =>
+            coach.name.toLowerCase().contains(query.toLowerCase()) ||
+            coach.contact.toLowerCase().contains(query.toLowerCase()))
         .toList();
     if (results.length == 0)
       return NoDataView(
@@ -54,9 +56,9 @@ class SearchUserDelegate extends SearchDelegate {
       );
     return ListView.builder(
       itemCount: results.length,
-      itemBuilder: (context, index) => UserListTile(
+      itemBuilder: (context, index) => CoachListTile(
         isSearching: true,
-        user: results[index],
+        coach: results[index],
       ),
     );
   }

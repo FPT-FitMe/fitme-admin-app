@@ -1,6 +1,8 @@
 import 'package:fitme_admin_app/constants/colors.dart';
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
+import 'package:fitme_admin_app/screens/ExerciseScreen/SearchExerciseDelegate/search_exercise_delegate.dart';
 import 'package:fitme_admin_app/widgets/exercise_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +22,19 @@ class ExerciseScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchExerciseDelegate(listExercises: listExercises),
+              );
+            },
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.detailExercise);
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -35,6 +44,7 @@ class ExerciseScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: listExercises.length,
         itemBuilder: (context, index) => ExerciseListTile(
+          isSearching: false,
           exercise: listExercises[index],
         ),
       ),

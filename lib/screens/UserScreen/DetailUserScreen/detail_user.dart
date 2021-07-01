@@ -140,6 +140,16 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                   SizedBox(
                     height: 20,
                   ),
+                  TextFormField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: "Url hình đại diện",
+                    ),
+                    initialValue: user.imageUrl,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ],

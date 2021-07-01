@@ -6,7 +6,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class UserListTile extends StatelessWidget {
   final User user;
-  const UserListTile({Key? key, required this.user}) : super(key: key);
+  final bool isSearching;
+  const UserListTile({
+    Key? key,
+    required this.user,
+    required this.isSearching,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,15 @@ class UserListTile extends StatelessWidget {
           },
         ),
       ),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Xóa',
-          color: AppColors.red500,
-          icon: Icons.delete,
-        ),
-      ],
+      secondaryActions: isSearching
+          ? null
+          : <Widget>[
+              IconSlideAction(
+                caption: 'Xóa',
+                color: AppColors.red500,
+                icon: Icons.delete,
+              ),
+            ],
     );
   }
 }

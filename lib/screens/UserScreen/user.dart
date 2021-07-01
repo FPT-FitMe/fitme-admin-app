@@ -35,7 +35,10 @@ class _UserScreenState extends State<UserScreen> implements UserView {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              showSearch(context: context, delegate: SearchUserDelegate());
+              showSearch(
+                context: context,
+                delegate: SearchUserDelegate(listUsers: listUsers),
+              );
             },
           ),
         ],
@@ -45,6 +48,7 @@ class _UserScreenState extends State<UserScreen> implements UserView {
           : ListView.builder(
               itemCount: listUsers.length,
               itemBuilder: (context, index) => UserListTile(
+                isSearching: false,
                 user: listUsers[index],
               ),
             ),

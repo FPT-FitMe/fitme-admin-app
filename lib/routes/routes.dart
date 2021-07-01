@@ -1,7 +1,9 @@
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/screens/AchievementScreen/achievement.dart';
+import 'package:fitme_admin_app/screens/CoachScreen/DetailCoachScreen/detail_coach.dart';
 import 'package:fitme_admin_app/screens/CoachScreen/coach.dart';
 import 'package:fitme_admin_app/screens/DashboardScreen/dashboard.dart';
+import 'package:fitme_admin_app/screens/ExerciseScreen/DetailExerciseScreen/detail_excercise.dart';
 import 'package:fitme_admin_app/screens/LoginScreen/login.dart';
 import 'package:fitme_admin_app/screens/MealScreen/meal.dart';
 import 'package:fitme_admin_app/screens/PostScreen/post.dart';
@@ -20,7 +22,9 @@ getRoutes() {
     AppRoutes.users: (context) => UserScreen(),
     AppRoutes.detailUser: (context) => DetailUserScreen(),
     AppRoutes.coaches: (context) => CoachScreen(),
+    AppRoutes.detailCoach: (context) => DetailCoachScreen(),
     AppRoutes.exercises: (context) => ExerciseScreen(),
+    AppRoutes.detailExercise: (context) => DetailExerciseScreen(),
     AppRoutes.workouts: (context) => WorkoutScreen(),
     AppRoutes.detailWorkout: (context) => DetailWorkoutScreen(),
     AppRoutes.workoutExercises: (context) => WorkoutExerciseScreen(),
