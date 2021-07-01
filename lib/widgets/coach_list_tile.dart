@@ -23,7 +23,7 @@ class CoachListTile extends StatelessWidget {
       ),
       secondaryActions: <Widget>[
         IconSlideAction(
-          caption: 'Delete',
+          caption: 'Xóa',
           color: Colors.red,
           icon: Icons.delete,
         )

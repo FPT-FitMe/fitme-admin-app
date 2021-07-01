@@ -15,6 +15,7 @@ final List<Workout> fakeListWorkouts = [
     level: 1,
     name: '5 phút tập bụng',
     coach: fakeListCoaches[0],
+    exercises: [],
   ),
   Workout(
     workoutID: 2,
@@ -27,6 +28,7 @@ final List<Workout> fakeListWorkouts = [
     level: 2,
     name: 'Tập cardio cùng Linh Nguyễn',
     coach: fakeListCoaches[1],
+    exercises: fakeListExercises,
   ),
 ];
 

@@ -10,7 +10,6 @@ class UserListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(user.imageUrl);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       child: Container(
@@ -30,7 +29,7 @@ class UserListTile extends StatelessWidget {
       ),
       secondaryActions: <Widget>[
         IconSlideAction(
-          caption: 'Delete',
+          caption: 'Xóa',
           color: AppColors.red500,
           icon: Icons.delete,
         ),

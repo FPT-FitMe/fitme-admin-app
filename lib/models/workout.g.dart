@@ -17,6 +17,9 @@ Workout _$WorkoutFromJson(Map<String, dynamic> json) {
     level: json['level'] as int,
     name: json['name'] as String,
     coach: Coach.fromJson(json['coach'] as Map<String, dynamic>),
+    exercises: (json['exercises'] as List<dynamic>)
+        .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -30,4 +33,5 @@ Map<String, dynamic> _$WorkoutToJson(Workout instance) => <String, dynamic>{
       'level': instance.level,
       'name': instance.name,
       'coach': instance.coach,
+      'exercises': instance.exercises,
     };

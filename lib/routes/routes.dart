@@ -10,6 +10,7 @@ import 'package:fitme_admin_app/screens/UserScreen/DetailUserScreen/detail_user.
 import 'package:fitme_admin_app/screens/UserScreen/user.dart';
 import 'package:fitme_admin_app/screens/ExerciseScreen/exercise.dart';
 import 'package:fitme_admin_app/screens/WorkoutScreen/DetailWorkoutScreen/detail_workout.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/WorkoutExerciseScreen/workout_exercise.dart';
 import 'package:fitme_admin_app/screens/WorkoutScreen/workout.dart';
 
 getRoutes() {
@@ -22,6 +23,7 @@ getRoutes() {
     AppRoutes.exercises: (context) => ExerciseScreen(),
     AppRoutes.workouts: (context) => WorkoutScreen(),
     AppRoutes.detailWorkout: (context) => DetailWorkoutScreen(),
+    AppRoutes.workoutExercises: (context) => WorkoutExerciseScreen(),
     AppRoutes.meals: (context) => MealScreen(),
     AppRoutes.posts: (context) => PostScreen(),
     AppRoutes.tags: (context) => TagScreen(),

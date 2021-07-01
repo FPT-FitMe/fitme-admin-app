@@ -30,11 +30,33 @@ class WorkoutListTile extends StatelessWidget {
                 )
               : null,
           onTap: () {
-            Navigator.pushNamed(context, AppRoutes.detailWorkout,
-                arguments: workout);
+            Navigator.pushNamed(
+              context,
+              AppRoutes.detailWorkout,
+              arguments: workout,
+            );
           },
         ),
       ),
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Bài tập',
+          color: Colors.blue[500],
+          icon: CommunityMaterialIcons.playlist_edit,
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AppRoutes.workoutExercises,
+              arguments: workout,
+            );
+          },
+        ),
+        IconSlideAction(
+          caption: 'Xóa',
+          color: AppColors.red500,
+          icon: Icons.delete,
+        ),
+      ],
     );
   }
 }

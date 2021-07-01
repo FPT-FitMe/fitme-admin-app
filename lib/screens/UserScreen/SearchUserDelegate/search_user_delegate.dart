@@ -2,9 +2,9 @@ import 'package:fitme_admin_app/models/user.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
 import 'package:fitme_admin_app/screens/UserScreen/SearchUserDelegate/search_user_presenter.dart';
 import 'package:fitme_admin_app/screens/UserScreen/SearchUserDelegate/search_user_view.dart';
+import 'package:fitme_admin_app/widgets/no_data_view.dart';
 import 'package:fitme_admin_app/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchUserDelegate extends SearchDelegate implements SearchUserView {
   late SearchUserPresenter _presenter;
@@ -56,7 +56,7 @@ class SearchUserDelegate extends SearchDelegate implements SearchUserView {
             return LoadingScreen();
           } else {
             List<User> listUsers = snapshot.data as List<User>;
-            if (listUsers.length == 0) return _buildNotFoundScreen();
+            if (listUsers.length == 0) return NoDataView();
             return ListView.builder(
               itemCount: listUsers.length,
               itemBuilder: (context, index) =>
@@ -70,32 +70,6 @@ class SearchUserDelegate extends SearchDelegate implements SearchUserView {
   Widget buildSuggestions(BuildContext context) {
     return ListView(
       children: [],
-    );
-  }
-
-  _buildNotFoundScreen() {
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          SvgPicture.asset(
-            "assets/images/no_data.svg",
-            fit: BoxFit.cover,
-            height: 250,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Text(
-            "Không tìm thấy thông tin",
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          )
-        ],
-      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/fake_data.dart';
+import 'package:fitme_admin_app/models/menu_item.dart';
 import 'package:fitme_admin_app/models/workout.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,10 @@ class DetailWorkoutScreen extends StatefulWidget {
 
 class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> menuItems = ["Xóa khóa tập"];
+  final List<MenuItem> menuItems = [
+    MenuItem(id: 1, title: "Chỉnh sửa bài tập"),
+    MenuItem(id: 2, title: "Xóa khóa tập"),
+  ];
   bool _isLoading = false;
   bool _isUpdateWorkout = false;
   int _coachID = fakeListCoaches.first.coachID;
@@ -59,11 +63,13 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
               itemBuilder: (BuildContext context) {
                 return menuItems
                     .map((choice) => PopupMenuItem<String>(
-                          value: "1",
+                          value: choice.id.toString(),
                           child: Text(
-                            choice,
+                            choice.title,
                             style: TextStyle(
-                              color: AppColors.red500,
+                              color: choice.id.toString() == "2"
+                                  ? AppColors.red500
+                                  : null,
                             ),
                           ),
                         ))

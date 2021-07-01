@@ -1,4 +1,5 @@
 import 'package:fitme_admin_app/models/coach.dart';
+import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'workout.g.dart';
 
@@ -13,6 +14,7 @@ class Workout {
   int level;
   String name;
   Coach coach;
+  List<Exercise> exercises;
 
   Workout({
     required this.workoutID,
@@ -25,6 +27,7 @@ class Workout {
     required this.level,
     required this.name,
     required this.coach,
+    required this.exercises,
   });
 
   factory Workout.fromJson(Map<String, dynamic> json) =>

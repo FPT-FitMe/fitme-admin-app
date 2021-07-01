@@ -6,6 +6,7 @@ class AppRoutes {
   static const String coaches = "/coaches";
   static const String workouts = "/workouts";
   static const String detailWorkout = "/workout/detail";
+  static const String workoutExercises = "/workout/exercises";
   static const String exercises = "/exercises";
   static const String meals = "/meals";
   static const String posts = "/posts";

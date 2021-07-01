@@ -1,3 +1,4 @@
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,9 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
       itemBuilder: (context, index) {
         if (index == _listExercises.length) {
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.detailWorkout);
+            },
             title: Text("Thêm bài tập mới"),
             leading: Icon(Icons.add),
           );
