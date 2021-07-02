@@ -11,6 +11,7 @@ class AppRoutes {
   static const String exercises = "/exercises";
   static const String detailExercise = "/exercise/detail";
   static const String meals = "/meals";
+  static const String detailMeal = "/meal/detail";
   static const String posts = "/posts";
   static const String tags = "/tags";
   static const String achievements = "/achievements";

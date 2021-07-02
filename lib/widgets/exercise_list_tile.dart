@@ -10,7 +10,7 @@ class ExerciseListTile extends StatelessWidget {
   const ExerciseListTile({
     Key? key,
     required this.exercise,
-    required this.isSearching,
+    this.isSearching = false,
   }) : super(key: key);
 
   @override

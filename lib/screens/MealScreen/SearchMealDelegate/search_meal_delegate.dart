@@ -1,15 +1,15 @@
-import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/widgets/meal_list_tile.dart';
 import 'package:fitme_admin_app/widgets/no_data_view.dart';
-import 'package:fitme_admin_app/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
 
-class SearchUserDelegate extends SearchDelegate {
-  List<User> listUsers;
+class SearchMealDelegate extends SearchDelegate {
+  List<Meal> listMeals;
 
-  SearchUserDelegate({required this.listUsers});
+  SearchMealDelegate({required this.listMeals});
 
   @override
-  String? get searchFieldLabel => "Bạn đang tìm kiếm gì?";
+  String? get searchFieldLabel => "Nhâp tên món ăn...";
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -45,18 +45,18 @@ class SearchUserDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<User> results = listUsers
-        .where((user) => user.email.toLowerCase().contains(query.toLowerCase()))
+    List<Meal> results = listMeals
+        .where((meal) => meal.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
     if (results.length == 0)
       return NoDataView(
-        title: "Người dùng không tồn tại",
+        title: "Món ăn không tồn tại",
       );
     return ListView.builder(
       itemCount: results.length,
-      itemBuilder: (context, index) => UserListTile(
+      itemBuilder: (context, index) => MealListTile(
         isSearching: true,
-        user: results[index],
+        meal: results[index],
       ),
     );
   }

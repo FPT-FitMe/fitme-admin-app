@@ -10,7 +10,7 @@ class CoachListTile extends StatelessWidget {
   const CoachListTile({
     Key? key,
     required this.coach,
-    required this.isSearching,
+    this.isSearching = false,
   }) : super(key: key);
 
   @override

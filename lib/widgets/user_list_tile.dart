@@ -10,7 +10,7 @@ class UserListTile extends StatelessWidget {
   const UserListTile({
     Key? key,
     required this.user,
-    required this.isSearching,
+    this.isSearching = false,
   }) : super(key: key);
 
   @override

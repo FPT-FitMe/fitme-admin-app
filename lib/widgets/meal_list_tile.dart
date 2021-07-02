@@ -1,10 +1,13 @@
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MealListTile extends StatelessWidget {
   final Meal meal;
-  const MealListTile({Key? key, required this.meal}) : super(key: key);
+  final bool isSearching;
+  const MealListTile({Key? key, required this.meal, this.isSearching = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,13 @@ class MealListTile extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListTile(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AppRoutes.detailMeal,
+              arguments: meal,
+            );
+          },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(meal.imageUrl),
           ),
@@ -21,13 +31,15 @@ class MealListTile extends StatelessWidget {
               Text("${meal.cookingTime} phút - ${meal.calories.toInt()} cals"),
         ),
       ),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Xóa',
-          color: Colors.red,
-          icon: Icons.delete,
-        ),
-      ],
+      secondaryActions: isSearching
+          ? null
+          : <Widget>[
+              IconSlideAction(
+                caption: 'Xóa',
+                color: Colors.red,
+                icon: Icons.delete,
+              ),
+            ],
     );
   }
 }

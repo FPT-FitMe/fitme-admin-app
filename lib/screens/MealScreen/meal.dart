@@ -1,6 +1,8 @@
 import 'package:fitme_admin_app/constants/colors.dart';
+import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/screens/MealScreen/SearchMealDelegate/search_meal_delegate.dart';
 import 'package:fitme_admin_app/widgets/meal_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +22,19 @@ class MealScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchMealDelegate(listMeals: listMeals),
+              );
+            },
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.detailMeal);
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,

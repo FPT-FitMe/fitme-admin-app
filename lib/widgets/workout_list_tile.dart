@@ -7,7 +7,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class WorkoutListTile extends StatelessWidget {
   final Workout workout;
-  const WorkoutListTile({Key? key, required this.workout}) : super(key: key);
+  final bool isSearching;
+  const WorkoutListTile({
+    Key? key,
+    required this.workout,
+    this.isSearching = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +43,27 @@ class WorkoutListTile extends StatelessWidget {
           },
         ),
       ),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Bài tập',
-          color: Colors.blue[500],
-          icon: CommunityMaterialIcons.playlist_edit,
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              AppRoutes.workoutExercises,
-              arguments: workout,
-            );
-          },
-        ),
-        IconSlideAction(
-          caption: 'Xóa',
-          color: AppColors.red500,
-          icon: Icons.delete,
-        ),
-      ],
+      secondaryActions: isSearching
+          ? null
+          : <Widget>[
+              IconSlideAction(
+                caption: 'Bài tập',
+                color: Colors.blue[500],
+                icon: CommunityMaterialIcons.playlist_edit,
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.workoutExercises,
+                    arguments: workout,
+                  );
+                },
+              ),
+              IconSlideAction(
+                caption: 'Xóa',
+                color: AppColors.red500,
+                icon: Icons.delete,
+              ),
+            ],
     );
   }
 }
