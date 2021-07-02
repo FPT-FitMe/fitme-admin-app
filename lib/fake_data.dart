@@ -28,7 +28,7 @@ final List<Workout> fakeListWorkouts = [
     level: 2,
     name: 'Tập cardio cùng Linh Nguyễn',
     coach: fakeListCoaches[1],
-    exercises: fakeListExercises,
+    exercises: [fakeListExercises[0]],
   ),
 ];
 
@@ -53,6 +53,28 @@ final List<Exercise> fakeListExercises = [
     imageUrl:
         "https://images.unsplash.com/photo-1594737625992-ef391874b13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
     name: "Vặn người",
+    videoUrl: "pushup.gif",
+  ),
+  Exercise(
+    exerciseID: 3,
+    baseDuration: 1,
+    baseRepPerRound: 12,
+    description: "Lorem Ipsum",
+    exerciseOrder: 3,
+    imageUrl:
+        "https://images.unsplash.com/photo-1539794830467-1f1755804d13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+    name: "Giãn cơ",
+    videoUrl: "pushup.gif",
+  ),
+  Exercise(
+    exerciseID: 4,
+    baseDuration: 1,
+    baseRepPerRound: 12,
+    description: "Lorem Ipsum",
+    exerciseOrder: 4,
+    imageUrl:
+        "https://images.unsplash.com/photo-1567598508481-65985588e295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    name: "Squat",
     videoUrl: "pushup.gif",
   ),
 ];

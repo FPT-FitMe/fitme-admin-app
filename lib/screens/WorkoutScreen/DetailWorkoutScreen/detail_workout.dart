@@ -24,8 +24,6 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
   bool? _isPremium = false;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _estimatedCaloriesController = TextEditingController();
-  TextEditingController _estimatedDurationController = TextEditingController();
   TextEditingController _imageUrlController = TextEditingController();
   TextEditingController _levelController = TextEditingController();
 
@@ -39,8 +37,6 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
       });
       _nameController.text = workout.name;
       _descriptionController.text = workout.description;
-      _estimatedCaloriesController.text = workout.estimatedCalories.toString();
-      _estimatedDurationController.text = workout.estimatedDuration.toString();
       _imageUrlController.text = workout.imageUrl;
       _levelController.text = workout.level.toString();
       _isPremium = workout.isPremium;
@@ -122,26 +118,6 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _estimatedCaloriesController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: "Calories",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _estimatedDurationController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: "Thời lượng",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
                       controller: _imageUrlController,
                       keyboardType: TextInputType.url,
                       decoration: InputDecoration(
@@ -155,7 +131,7 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
                       controller: _levelController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: "Cấp loại",
+                        labelText: "Cấp độ bài tập",
                       ),
                     ),
                     SizedBox(

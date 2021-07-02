@@ -4,7 +4,11 @@ import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:flutter/material.dart';
 
 class AddExerciseDialog extends StatefulWidget {
-  const AddExerciseDialog({Key? key}) : super(key: key);
+  final List<Exercise> selectedExercises;
+  const AddExerciseDialog({
+    Key? key,
+    required this.selectedExercises,
+  }) : super(key: key);
 
   @override
   _AddExerciseDialogState createState() => _AddExerciseDialogState();
@@ -12,8 +16,13 @@ class AddExerciseDialog extends StatefulWidget {
 
 class _AddExerciseDialogState extends State<AddExerciseDialog> {
   bool _isSearching = false;
+  List<Exercise> allExercises = fakeListExercises;
+  List<Exercise> searchResults = fakeListExercises;
+
+  TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    List<Exercise> selectedExercises = widget.selectedExercises;
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -27,6 +36,15 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
               AppBar(
                 title: _isSearching
                     ? TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            searchResults = allExercises
+                                .where((element) =>
+                                    element.name.toLowerCase().contains(value))
+                                .toList();
+                          });
+                        },
+                        controller: _searchController,
                         decoration: InputDecoration(
                           hintText: "Nhập tên bài tập...",
                           border: InputBorder.none,
@@ -34,7 +52,7 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
                         ),
                       )
                     : Text(
-                        "Tạo mới khóa tập",
+                        "Thêm bài tập",
                         style: TextStyle(fontSize: 16),
                       ),
                 actions: [
@@ -61,14 +79,56 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
                 centerTitle: true,
               ),
               Expanded(
-                child: _createExerciseListTile(),
+                child: ListView.builder(
+                  itemCount: searchResults.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index == searchResults.length) {
+                      return ListTile(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.detailExercise,
+                          );
+                        },
+                        title: Text("Thêm bài tập mới"),
+                        leading: Icon(Icons.add),
+                      );
+                    }
+                    return CheckboxListTile(
+                      title: Text(searchResults[index].name),
+                      subtitle: Text(searchResults[index].description),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      secondary: CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(searchResults[index].imageUrl),
+                      ),
+                      onChanged: (bool? value) {
+                        if (value == false) {
+                          setState(() {
+                            selectedExercises.remove(selectedExercises[index]);
+                          });
+                        } else {
+                          setState(() {
+                            selectedExercises.add(allExercises[index]);
+                          });
+                        }
+                      },
+                      value: selectedExercises
+                          .where((element) =>
+                              element.name.contains(searchResults[index].name))
+                          .isNotEmpty,
+                    );
+                  },
+                ),
               ),
               SizedBox(
-                width: 100,
+                width: 150,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context, selectedExercises);
+                  },
                   child: Text(
-                    "Tạo mới",
+                    "Thêm vào khóa tập",
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -79,38 +139,6 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
           ),
         ),
       ),
-    );
-  }
-
-  _createExerciseListTile() {
-    List<Exercise> _listExercises = fakeListExercises;
-    return ListView.builder(
-      itemCount: _listExercises.length + 1,
-      itemBuilder: (context, index) {
-        if (index == _listExercises.length) {
-          return ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.detailWorkout);
-            },
-            title: Text("Thêm bài tập mới"),
-            leading: Icon(Icons.add),
-          );
-        }
-        return CheckboxListTile(
-          title: Text(_listExercises[index].name),
-          subtitle: Text(_listExercises[index].description),
-          controlAffinity: ListTileControlAffinity.trailing,
-          secondary: CircleAvatar(
-            backgroundImage: NetworkImage(_listExercises[index].imageUrl),
-          ),
-          onChanged: (bool? value) {
-            setState(() {
-              _listExercises[index].isChecked = value;
-            });
-          },
-          value: _listExercises[index].isChecked,
-        );
-      },
     );
   }
 }

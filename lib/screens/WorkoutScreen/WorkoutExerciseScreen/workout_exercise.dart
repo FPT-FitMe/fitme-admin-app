@@ -30,11 +30,16 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
+        onPressed: () async {
+          List<Exercise> selectedExercises = await showDialog(
             context: context,
-            builder: (context) => AddExerciseDialog(),
+            builder: (context) => AddExerciseDialog(
+              selectedExercises: workout.exercises,
+            ),
           );
+          setState(() {
+            workout.exercises = selectedExercises;
+          });
         },
         child: Icon(
           Icons.add,
@@ -65,6 +70,10 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
   Widget _createReorderableExercise(Exercise exercise) {
     return ListTile(
       key: Key(exercise.exerciseID.toString()),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () {},
+      ),
       leading: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -81,5 +90,20 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
       subtitle: Text(
           "${exercise.baseDuration} phút - ${exercise.baseRepPerRound} reps"),
     );
+  }
+
+  void _navigateAndDisplaySelection(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WorkoutExerciseScreen()),
+    );
+
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result.
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 }
