@@ -91,19 +91,4 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
           "${exercise.baseDuration} phút - ${exercise.baseRepPerRound} reps"),
     );
   }
-
-  void _navigateAndDisplaySelection(BuildContext context) async {
-    // Navigator.push returns a Future that completes after calling
-    // Navigator.pop on the Selection Screen.
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => WorkoutExerciseScreen()),
-    );
-
-    // After the Selection Screen returns a result, hide any previous snackbars
-    // and show the new result.
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text('$result')));
-  }
 }

@@ -1,6 +1,8 @@
+import 'package:fitme_admin_app/constants/tag_types.dart';
 import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/models/tag.dart';
 import 'package:fitme_admin_app/models/workout.dart';
 
 final List<Workout> fakeListWorkouts = [
@@ -129,4 +131,16 @@ final List<Meal> fakeListMeals = [
     imageUrl:
         "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
   ),
+];
+
+final List<Tag> fakeListMealTags = [
+  Tag(tagID: 1, name: "Sáng", type: TagTypes.meal),
+  Tag(tagID: 2, name: "Trưa", type: TagTypes.meal),
+  Tag(tagID: 3, name: "Chiều", type: TagTypes.meal),
+];
+
+final List<Tag> fakeListExerciseTags = [
+  Tag(tagID: 4, name: "Cardio", type: TagTypes.exercise),
+  Tag(tagID: 5, name: "Vai", type: TagTypes.exercise),
+  Tag(tagID: 6, name: "Ngực", type: TagTypes.exercise),
 ];

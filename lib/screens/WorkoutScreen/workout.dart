@@ -1,6 +1,7 @@
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/workout.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/SearchWorkoutDelegate/search_workout_delegate.dart';
 import 'package:fitme_admin_app/widgets/workout_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,14 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchWorkoutDelegate(
+                  listWorkouts: listWorkouts,
+                ),
+              );
+            },
           ),
         ],
       ),
