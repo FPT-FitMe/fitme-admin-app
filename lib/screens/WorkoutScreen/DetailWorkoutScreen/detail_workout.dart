@@ -114,16 +114,16 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
                         labelText: "Mô tả khóa tập",
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _imageUrlController,
-                      keyboardType: TextInputType.url,
-                      decoration: InputDecoration(
-                        labelText: "URL hình ảnh",
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    // TextFormField(
+                    //   controller: _imageUrlController,
+                    //   keyboardType: TextInputType.url,
+                    //   decoration: InputDecoration(
+                    //     labelText: "URL hình ảnh",
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),

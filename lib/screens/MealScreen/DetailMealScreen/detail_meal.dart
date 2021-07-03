@@ -139,7 +139,7 @@ class _DetailMealScreenState extends State<DetailMealScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _caloriesController,
+                      controller: _carbAmountController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: "Lượng carb trong món ăn",
@@ -150,23 +150,23 @@ class _DetailMealScreenState extends State<DetailMealScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _caloriesController,
+                      controller: _fatAmountController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: "Lượng chất béo trong món ăn",
                         suffixText: "g",
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _imageUrlController,
-                      keyboardType: TextInputType.url,
-                      decoration: InputDecoration(
-                        labelText: "Url hình món ăn",
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    // TextFormField(
+                    //   controller: _imageUrlController,
+                    //   keyboardType: TextInputType.url,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Url hình món ăn",
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),

@@ -135,26 +135,26 @@ class _DetailExerciseScreenState extends State<DetailExerciseScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      controller: _imageUrlController,
-                      keyboardType: TextInputType.url,
-                      decoration: InputDecoration(
-                        labelText: "Link hình bài tập",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _videoUrlController,
-                      keyboardType: TextInputType.url,
-                      decoration: InputDecoration(
-                        labelText: "Link video bài tập",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // TextFormField(
+                    //   controller: _imageUrlController,
+                    //   keyboardType: TextInputType.url,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Link hình bài tập",
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    // TextFormField(
+                    //   controller: _videoUrlController,
+                    //   keyboardType: TextInputType.url,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Link video bài tập",
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
                   ],
                 ),
               ),

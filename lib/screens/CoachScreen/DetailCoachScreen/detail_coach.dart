@@ -2,6 +2,7 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DetailCoachScreen extends StatefulWidget {
   const DetailCoachScreen({Key? key}) : super(key: key);
@@ -73,12 +74,18 @@ class _DetailCoachScreenState extends State<DetailCoachScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
-                child: CircleAvatar(
-                  radius: 40,
-                  child: coach != null ? null : Icon(Icons.add_a_photo),
-                  backgroundImage: coach != null
-                      ? NetworkImage(coach.imageUrl.toString())
-                      : null,
+                child: GestureDetector(
+                  onTap: () async {
+                    var image = await ImagePicker()
+                        .getImage(source: ImageSource.gallery);
+                  },
+                  child: CircleAvatar(
+                    radius: 40,
+                    child: coach != null ? null : Icon(Icons.add_a_photo),
+                    backgroundImage: coach != null
+                        ? NetworkImage(coach.imageUrl.toString())
+                        : null,
+                  ),
                 ),
               ),
               Form(
@@ -118,16 +125,16 @@ class _DetailCoachScreenState extends State<DetailCoachScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      controller: _imageUrlController,
-                      keyboardType: TextInputType.url,
-                      decoration: InputDecoration(
-                        labelText: "Url hình đại diện",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // TextFormField(
+                    //   controller: _imageUrlController,
+                    //   keyboardType: TextInputType.url,
+                    //   decoration: InputDecoration(
+                    //     labelText: "Url hình đại diện",
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
                   ],
                 ),
               ),
