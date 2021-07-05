@@ -11,10 +11,7 @@ class UserService implements UserRepository {
     List<User> users;
     final response = await dio.get('/users');
     List listUsers = response.data;
-    users = listUsers.map((user) {
-      String phoneNumber = user["phone"];
-      return User.fromJson(user);
-    }).toList();
+    users = listUsers.map((user) => User.fromJson(user)).toList();
     return users;
   }
 
