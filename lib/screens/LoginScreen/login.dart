@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   final _formKey = GlobalKey<FormState>();
   late LoginPresenter _presenter;
   bool _isLoading = false;
+  String _errorMessage = "";
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 20, right: 20),
@@ -39,11 +40,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                   height: 100,
                 ),
               ),
-              Text("Xin chào",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(
+                "Xin chào",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 5),
-              Text("Vui lòng đăng nhập để tiếp tục",
-                  style: TextStyle(fontSize: 18, color: AppColors.grayText)),
+              Text(
+                "Vui lòng đăng nhập để tiếp tục",
+                style: TextStyle(fontSize: 18, color: AppColors.grayText),
+              ),
               Form(
                 key: _formKey,
                 child: Column(
@@ -59,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                         labelText: "Email",
                       ),
                       validator: MultiValidator([
-                        EmailValidator(errorText: "Email không hợp lệ"),
+                        // TODO: uncomment email validator when be fixed
+                        // EmailValidator(errorText: "Email không hợp lệ"),
                         RequiredValidator(errorText: "* Bắt buộc")
                       ]),
                     ),
@@ -71,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        labelText: "Password",
+                        labelText: "Mật khẩu",
                       ),
                       validator: RequiredValidator(errorText: "* Bắt buộc"),
                     ),
@@ -90,8 +96,14 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 30,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
+                      child: Text(
+                        _errorMessage,
+                        style: TextStyle(
+                          color: AppColors.red500,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -133,21 +145,21 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   }
 
   @override
-  void loginFail() {
+  void loginFail(errorMessage) {
     setState(() {
       _isLoading = false;
+      _errorMessage = errorMessage;
     });
   }
 
   @override
-  void loginSuccess() {
+  void loginSuccess(user) {
     Fluttertoast.showToast(msg: "Thành công");
     setState(() {
       _isLoading = false;
     });
-    // TODO: navigate sang home va xoa stack
     Navigator.pushNamedAndRemoveUntil(
-        context, AppRoutes.mainScreen, (route) => false);
+        context, AppRoutes.dashboard, (route) => false);
   }
 
   void submitForm() {
