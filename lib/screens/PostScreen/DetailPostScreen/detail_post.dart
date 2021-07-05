@@ -32,7 +32,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
       setState(() {
         _isUpdatePost = true;
       });
-      _nameController.text = post.postName;
+      _nameController.text = post.name;
       _contentBodyController.text = post.contentBody;
       _contentHeaderController.text = post.contentHeader;
       _readingTimeController.text = post.readingTime.toString();
@@ -43,7 +43,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          _isUpdatePost == false ? "Thêm món ăn" : post!.postName,
+          _isUpdatePost == false ? "Thêm món ăn" : post!.name,
         ),
         centerTitle: true,
         actions: [

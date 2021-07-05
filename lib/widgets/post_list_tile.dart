@@ -26,7 +26,7 @@ class PostListTile extends StatelessWidget {
           leading: CircleAvatar(
             backgroundImage: NetworkImage(post.imageUrl),
           ),
-          title: Text(post.postName),
+          title: Text(post.name),
           subtitle: Text("${post.readingTime} phút đọc"),
         ),
       ),

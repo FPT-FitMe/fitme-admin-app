@@ -149,13 +149,14 @@ final List<Tag> fakeListExerciseTags = [
 final List<Post> fakeListPosts = [
   Post(
     postID: 1,
-    contentBody: "Con cho rat dep",
-    contentHeader: "Con cho",
+    contentBody:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do",
+    contentHeader: "Nước vô cùng quan trọng với cơ thể",
     imageUrl:
-        "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80",
+        "https://images.unsplash.com/photo-1579643231315-c827436682b8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     readingTime: 10,
     isActive: true,
-    postName: "Hello",
+    name: "Tại sao bạn cần nước?",
     createdDate: DateTime.now(),
     lastUpdatedDate: DateTime.now(),
     coachProfile: fakeListCoaches[0],

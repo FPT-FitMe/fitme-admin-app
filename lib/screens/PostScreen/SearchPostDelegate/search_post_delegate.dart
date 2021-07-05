@@ -46,8 +46,7 @@ class SearchPostDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<Post> results = listPosts
-        .where(
-            (post) => post.postName.toLowerCase().contains(query.toLowerCase()))
+        .where((post) => post.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
     if (results.length == 0)
       return NoDataView(
