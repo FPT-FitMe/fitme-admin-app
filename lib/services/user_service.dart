@@ -10,7 +10,11 @@ class UserService implements UserRepository {
   Future<List<User>> getAllUsers() async {
     List<User> users;
     final response = await dio.get('/users');
-    users = (response.data as List).map((user) => User.fromJson(user)).toList();
+    List listUsers = response.data;
+    users = listUsers.map((user) {
+      String phoneNumber = user["phone"];
+      return User.fromJson(user);
+    }).toList();
     return users;
   }
 

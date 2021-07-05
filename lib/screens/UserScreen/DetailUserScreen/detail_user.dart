@@ -94,16 +94,16 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                     ),
                     initialValue: user.email,
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: "Giới tính",
-                    ),
-                    initialValue: user.gender == "M" ? "Nam" : "Nữ",
-                  ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                  // TextFormField(
+                  //   readOnly: true,
+                  //   decoration: InputDecoration(
+                  //     labelText: "Giới tính",
+                  //   ),
+                  //   initialValue: user.gender == 1 ? "Nam" : "Nữ",
+                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -125,7 +125,7 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                     decoration: InputDecoration(
                       labelText: "Số điện thoại",
                     ),
-                    initialValue: user.phoneNumber.toString(),
+                    initialValue: user.phone.toString(),
                   ),
                   SizedBox(
                     height: 20,

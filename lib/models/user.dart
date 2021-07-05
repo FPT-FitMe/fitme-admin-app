@@ -8,9 +8,9 @@ class User {
   final String lastName;
   final String email;
   final int? age;
-  final String gender;
-  final String role;
-  final String phoneNumber;
+  // final int gender;
+  // final String role;
+  final String? phone;
   final String? profileImageUrl;
   final double? height;
   final bool? premium;
@@ -21,9 +21,9 @@ class User {
     required this.lastName,
     required this.email,
     this.age,
-    required this.gender,
-    required this.role,
-    required this.phoneNumber,
+    // required this.gender,
+    // required this.role,
+    this.phone,
     required this.profileImageUrl,
     required this.premium,
     this.height,

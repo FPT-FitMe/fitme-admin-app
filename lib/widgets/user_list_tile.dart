@@ -26,7 +26,7 @@ class UserListTile extends StatelessWidget {
                 : 'https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=635&q=80'),
           ),
           title: Text(user.firstName + " " + user.lastName),
-          subtitle: Text('${user.email} - ${user.phoneNumber}'),
+          subtitle: Text('${user.email} - ${user.phone}'),
           onTap: () {
             Navigator.pushNamed(context, AppRoutes.detailUser, arguments: user);
           },
