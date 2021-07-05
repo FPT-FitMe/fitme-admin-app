@@ -17,13 +17,13 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as User;
-    print(user.imageUrl);
+    print(user.profileImageUrl);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          user.username,
+          user.firstName + " " + user.lastName,
           style: TextStyle(),
         ),
         centerTitle: true,
@@ -57,8 +57,8 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
               Center(
                 child: CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(user.imageUrl != null
-                      ? user.imageUrl.toString()
+                  backgroundImage: NetworkImage(user.profileImageUrl != null
+                      ? user.profileImageUrl.toString()
                       : 'https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=635&q=80'),
                 ),
               ),
@@ -102,7 +102,7 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                     decoration: InputDecoration(
                       labelText: "Giới tính",
                     ),
-                    initialValue: user.gender == 1 ? "Nam" : "Nữ",
+                    initialValue: user.gender == "M" ? "Nam" : "Nữ",
                   ),
                   SizedBox(
                     height: 20,
@@ -125,28 +125,8 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                     decoration: InputDecoration(
                       labelText: "Số điện thoại",
                     ),
-                    initialValue: user.phone.toString(),
+                    initialValue: user.phoneNumber.toString(),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: "Username",
-                    ),
-                    initialValue: user.username,
-                  ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  // TextFormField(
-                  //   readOnly: true,
-                  //   decoration: InputDecoration(
-                  //     labelText: "Url hình đại diện",
-                  //   ),
-                  //   initialValue: user.imageUrl,
-                  // ),
                   SizedBox(
                     height: 20,
                   ),
