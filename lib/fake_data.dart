@@ -2,6 +2,7 @@ import 'package:fitme_admin_app/constants/tag_types.dart';
 import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/models/post.dart';
 import 'package:fitme_admin_app/models/tag.dart';
 import 'package:fitme_admin_app/models/workout.dart';
 
@@ -143,4 +144,20 @@ final List<Tag> fakeListExerciseTags = [
   Tag(tagID: 4, name: "Cardio", type: TagTypes.exercise),
   Tag(tagID: 5, name: "Vai", type: TagTypes.exercise),
   Tag(tagID: 6, name: "Ngực", type: TagTypes.exercise),
+];
+
+final List<Post> fakeListPosts = [
+  Post(
+    postID: 1,
+    contentBody: "Con cho rat dep",
+    contentHeader: "Con cho",
+    imageUrl:
+        "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80",
+    readingTime: 10,
+    isActive: true,
+    postName: "Hello",
+    createdDate: DateTime.now(),
+    lastUpdatedDate: DateTime.now(),
+    coachProfile: fakeListCoaches[0],
+  )
 ];

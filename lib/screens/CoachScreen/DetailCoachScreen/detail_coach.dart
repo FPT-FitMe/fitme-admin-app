@@ -2,7 +2,6 @@ import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/menu_item.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class DetailCoachScreen extends StatefulWidget {
   const DetailCoachScreen({Key? key}) : super(key: key);
@@ -75,10 +74,7 @@ class _DetailCoachScreenState extends State<DetailCoachScreen> {
             children: <Widget>[
               Center(
                 child: GestureDetector(
-                  onTap: () async {
-                    var image = await ImagePicker()
-                        .getImage(source: ImageSource.gallery);
-                  },
+                  onTap: () {},
                   child: CircleAvatar(
                     radius: 40,
                     child: coach != null ? null : Icon(Icons.add_a_photo),

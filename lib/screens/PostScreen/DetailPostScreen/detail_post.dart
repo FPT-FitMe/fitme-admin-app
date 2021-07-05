@@ -1,57 +1,53 @@
-import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
-import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/menu_item.dart';
+import 'package:fitme_admin_app/models/post.dart';
 import 'package:flutter/material.dart';
 
-class DetailMealScreen extends StatefulWidget {
-  const DetailMealScreen({Key? key}) : super(key: key);
+class DetailPostScreen extends StatefulWidget {
+  const DetailPostScreen({Key? key}) : super(key: key);
 
   @override
-  _DetailMealScreenState createState() => _DetailMealScreenState();
+  _DetailPostScreenState createState() => _DetailPostScreenState();
 }
 
-class _DetailMealScreenState extends State<DetailMealScreen> {
+class _DetailPostScreenState extends State<DetailPostScreen> {
   final _formKey = GlobalKey<FormState>();
   final List<MenuItem> menuItems = [
-    MenuItem(id: 1, title: "Xóa món ăn"),
+    MenuItem(id: 1, title: "Xóa bài viết"),
   ];
   bool _isLoading = false;
-  bool _isUpdateMeal = false;
-  bool? _isPremium = false;
+  bool _isUpdatePost = false;
+  Coach? selectedCoach;
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _cookingTimeController = TextEditingController();
-  TextEditingController _caloriesController = TextEditingController();
-  TextEditingController _carbAmountController = TextEditingController();
-  TextEditingController _fatAmountController = TextEditingController();
+  TextEditingController _contentBodyController = TextEditingController();
+  TextEditingController _contentHeaderController = TextEditingController();
+  TextEditingController _readingTimeController = TextEditingController();
   TextEditingController _imageUrlController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final Meal? meal = ModalRoute.of(context)!.settings.arguments as Meal?;
-    if (meal != null) {
+    final Post? post = ModalRoute.of(context)!.settings.arguments as Post?;
+    if (post != null) {
       setState(() {
-        _isUpdateMeal = true;
+        _isUpdatePost = true;
       });
-      _nameController.text = meal.name;
-      _descriptionController.text = meal.description;
-      _cookingTimeController.text = meal.cookingTime.toString();
-      _caloriesController.text = meal.calories.toString();
-      _carbAmountController.text = meal.carbAmount.toString();
-      _fatAmountController.text = meal.fatAmount.toString();
-      _imageUrlController.text = meal.imageUrl;
+      _nameController.text = post.postName;
+      _contentBodyController.text = post.contentBody;
+      _contentHeaderController.text = post.contentHeader;
+      _readingTimeController.text = post.readingTime.toString();
+      _imageUrlController.text = post.imageUrl;
     }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          _isUpdateMeal == false ? "Thêm món ăn" : meal!.name,
+          _isUpdatePost == false ? "Thêm món ăn" : post!.postName,
         ),
         centerTitle: true,
         actions: [
-          if (_isUpdateMeal)
+          if (_isUpdatePost)
             PopupMenuButton<String>(
               offset: Offset(-20, 50),
               onSelected: (value) {},
@@ -83,9 +79,9 @@ class _DetailMealScreenState extends State<DetailMealScreen> {
               Center(
                 child: CircleAvatar(
                   radius: 40,
-                  child: meal != null ? null : Icon(Icons.add_a_photo),
-                  backgroundImage: meal != null
-                      ? NetworkImage(meal.imageUrl.toString())
+                  child: post != null ? null : Icon(Icons.add_a_photo),
+                  backgroundImage: post != null
+                      ? NetworkImage(post.imageUrl.toString())
                       : null,
                 ),
               ),
@@ -99,91 +95,41 @@ class _DetailMealScreenState extends State<DetailMealScreen> {
                     TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(
-                        labelText: "Tên món ăn",
+                        labelText: "Tên bài viết",
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _cookingTimeController,
+                      controller: _contentHeaderController,
+                      maxLines: null,
                       decoration: InputDecoration(
-                        labelText: "Thời gian nấu",
-                        suffixText: "phút",
+                        labelText: "Tiêu đề nội dung",
                       ),
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.multiline,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _descriptionController,
+                      controller: _contentBodyController,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
-                        labelText: "Mô tả món ăn",
+                        labelText: "Nội dung",
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      controller: _caloriesController,
+                      controller: _readingTimeController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: "Lượng calories trong món ăn",
-                        suffixText: "cals",
+                        labelText: "Thời gian đọc",
+                        suffixText: "phút",
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _carbAmountController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: "Lượng carb trong món ăn",
-                        suffixText: "g",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _fatAmountController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: "Lượng chất béo trong món ăn",
-                        suffixText: "g",
-                      ),
-                    ),
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
-                    // TextFormField(
-                    //   controller: _imageUrlController,
-                    //   keyboardType: TextInputType.url,
-                    //   decoration: InputDecoration(
-                    //     labelText: "Url hình món ăn",
-                    //   ),
-                    // ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CheckboxListTile(
-                      secondary: Icon(
-                        CommunityMaterialIcons.professional_hexagon,
-                      ),
-                      title: Align(
-                        child: Text("Nội dung trả tiền"),
-                        alignment: Alignment(-1.2, 0),
-                      ),
-                      value: _isPremium,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          _isPremium = value;
-                        });
-                      },
                     ),
                     SizedBox(
                       height: 20,
@@ -216,7 +162,7 @@ class _DetailMealScreenState extends State<DetailMealScreen> {
                     ),
                   )
                 : Text(
-                    _isUpdateMeal ? "Cập nhật món ăn" : "Tạo món ăn mới",
+                    _isUpdatePost ? "Cập nhật bài viết" : "Tạo bài viết mới",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

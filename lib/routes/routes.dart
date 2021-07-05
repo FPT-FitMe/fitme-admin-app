@@ -7,6 +7,7 @@ import 'package:fitme_admin_app/screens/ExerciseScreen/DetailExerciseScreen/deta
 import 'package:fitme_admin_app/screens/LoginScreen/login.dart';
 import 'package:fitme_admin_app/screens/MealScreen/DetailMealScreen/detail_meal.dart';
 import 'package:fitme_admin_app/screens/MealScreen/meal.dart';
+import 'package:fitme_admin_app/screens/PostScreen/DetailPostScreen/detail_post.dart';
 import 'package:fitme_admin_app/screens/PostScreen/post.dart';
 import 'package:fitme_admin_app/screens/TagScreen/tag.dart';
 import 'package:fitme_admin_app/screens/UserScreen/DetailUserScreen/detail_user.dart';
@@ -32,6 +33,7 @@ getRoutes() {
     AppRoutes.meals: (context) => MealScreen(),
     AppRoutes.detailMeal: (context) => DetailMealScreen(),
     AppRoutes.posts: (context) => PostScreen(),
+    AppRoutes.detailPost: (context) => DetailPostScreen(),
     AppRoutes.tags: (context) => TagScreen(),
     AppRoutes.achievements: (context) => AchievementScreen(),
   };
