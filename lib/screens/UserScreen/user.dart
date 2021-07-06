@@ -5,6 +5,7 @@ import 'package:fitme_admin_app/screens/UserScreen/user_presenter.dart';
 import 'package:fitme_admin_app/screens/UserScreen/user_view.dart';
 import 'package:fitme_admin_app/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class _UserScreenState extends State<UserScreen> implements UserView {
   late UserPresenter _presenter;
   bool _isLoading = true;
   List<User> listUsers = [];
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   _UserScreenState() {
     _presenter = new UserPresenter(this);
@@ -45,14 +48,24 @@ class _UserScreenState extends State<UserScreen> implements UserView {
       ),
       body: _isLoading == true
           ? LoadingScreen()
-          : ListView.builder(
-              itemCount: listUsers.length,
-              itemBuilder: (context, index) => UserListTile(
-                isSearching: false,
-                user: listUsers[index],
+          : SmartRefresher(
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              child: ListView.builder(
+                itemCount: listUsers.length,
+                itemBuilder: (context, index) => UserListTile(
+                  isSearching: false,
+                  user: listUsers[index],
+                ),
               ),
             ),
     );
+  }
+
+  void _onRefresh() async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    _presenter.loadAllUsers();
+    _refreshController.refreshCompleted();
   }
 
   @override

@@ -1,5 +1,6 @@
-import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/models/auth_user.dart';
 
 abstract class AuthRepository {
-  Future<User> login(String email, String password);
+  Future<AuthUser> login(String email, String password);
+  Future<String?> refreshToken();
 }

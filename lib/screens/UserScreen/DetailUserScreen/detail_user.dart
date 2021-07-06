@@ -1,3 +1,4 @@
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/models/user.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,9 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
         actions: [
           PopupMenuButton<String>(
             offset: Offset(-20, 50),
-            onSelected: (value) {},
+            onSelected: (value) {
+              if (value == "1") {}
+            },
             itemBuilder: (BuildContext context) {
               return menuItems
                   .map((choice) => PopupMenuItem<String>(
@@ -94,29 +97,6 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                     ),
                     initialValue: user.email,
                   ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  // TextFormField(
-                  //   readOnly: true,
-                  //   decoration: InputDecoration(
-                  //     labelText: "Giới tính",
-                  //   ),
-                  //   initialValue: user.gender == 1 ? "Nam" : "Nữ",
-                  // ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: "Chiều cao",
-                    ),
-                    initialValue:
-                        double.tryParse(user.height.toString()) == null
-                            ? ''
-                            : user.height.toString(),
-                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -129,6 +109,43 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
                   ),
                   SizedBox(
                     height: 20,
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: "Giới tính",
+                    ),
+                    initialValue: user.gender == 0 ? "Nam" : "Nữ",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: "Chiều cao",
+                      suffixText: "cm",
+                    ),
+                    initialValue:
+                        double.tryParse(user.height.toString()) == null
+                            ? ''
+                            : user.height.toString(),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CheckboxListTile(
+                    secondary: Icon(
+                      CommunityMaterialIcons.professional_hexagon,
+                    ),
+                    title: Align(
+                      child: Text("Thành viên pro"),
+                      alignment: Alignment(-1.2, 0),
+                    ),
+                    value: user.isPremium == null || user.isPremium == false
+                        ? false
+                        : true,
+                    onChanged: (bool? value) {},
                   ),
                 ],
               ),

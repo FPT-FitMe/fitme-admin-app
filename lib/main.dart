@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
   Future<String?> _checkUserLogin() async {
     FlutterSecureStorage _storage = new FlutterSecureStorage();
     var userToken = await _storage.read(key: "userToken");
-    print("Token $userToken");
     return userToken;
   }
 }

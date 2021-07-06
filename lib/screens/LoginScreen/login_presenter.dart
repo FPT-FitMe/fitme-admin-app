@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fitme_admin_app/di/injection.dart';
-import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/models/auth_user.dart';
+import 'package:fitme_admin_app/models/errors/AuthUserException.dart';
 import 'package:fitme_admin_app/repository/auth_repository.dart';
 import 'package:fitme_admin_app/screens/LoginScreen/login_view.dart';
 
@@ -15,13 +16,15 @@ class LoginPresenter {
   void login(String email, String password) async {
     try {
       if (email.isNotEmpty) {
-        User user = await _authRepository.login(email, password);
+        AuthUser user = await _authRepository.login(email, password);
         _loginView.loginSuccess(user);
       }
     } on DioError {
       _loginView.loginFail("Email hoặc password không hợp lệ");
+    } on AuthUserException catch (e) {
+      _loginView.loginFail(e.message.toString());
     } catch (e) {
-      _loginView.loginFail("Unexpected errors");
+      _loginView.loginFail("Lỗi không xác định");
     }
   }
 }
