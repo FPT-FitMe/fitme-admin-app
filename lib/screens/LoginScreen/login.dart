@@ -64,8 +64,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                         labelText: "Email",
                       ),
                       validator: MultiValidator([
-                        // TODO: uncomment email validator when be fixed
-                        // EmailValidator(errorText: "Email không hợp lệ"),
+                        EmailValidator(errorText: "Email không hợp lệ"),
                         RequiredValidator(errorText: "* Bắt buộc")
                       ]),
                     ),
@@ -83,18 +82,6 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                     ),
                     SizedBox(
                       height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Quên mật khẩu",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
@@ -154,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
 
   @override
   void loginSuccess(user) {
-    Fluttertoast.showToast(msg: "Thành công");
+    Fluttertoast.showToast(msg: "Đăng nhập thành công");
     setState(() {
       _isLoading = false;
     });

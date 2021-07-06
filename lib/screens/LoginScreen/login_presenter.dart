@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fitme_admin_app/di/injection.dart';
-import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/models/auth_user.dart';
 import 'package:fitme_admin_app/repository/auth_repository.dart';
 import 'package:fitme_admin_app/screens/LoginScreen/login_view.dart';
 
@@ -15,7 +15,7 @@ class LoginPresenter {
   void login(String email, String password) async {
     try {
       if (email.isNotEmpty) {
-        User user = await _authRepository.login(email, password);
+        AuthUser user = await _authRepository.login(email, password);
         _loginView.loginSuccess(user);
       }
     } on DioError {
