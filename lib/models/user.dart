@@ -1,32 +1,45 @@
+import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/models/role.dart';
+import 'package:fitme_admin_app/models/workout.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  final int? userID;
+  final int userID;
   final String firstName;
   final String lastName;
   final String email;
-  final int? age;
-  // final int gender;
-  // final String role;
-  final String? phone;
-  final String? profileImageUrl;
+  final String phone;
+  final int age;
+  final int gender;
+  final Role role;
+  final List<Workout> traineeFavoriteWorkouts;
+  final List<Meal> traineeFavoriteMeals;
   final double? height;
-  final bool? premium;
+  final int? dietPreferenceType;
+  final int? exerciseFrequencyType;
+  final double? workoutIntensity;
+  final bool? isPremium;
+  final String? profileImageUrl;
 
   User({
-    this.userID,
+    required this.userID,
     required this.firstName,
     required this.lastName,
     required this.email,
-    this.age,
-    // required this.gender,
-    // required this.role,
-    this.phone,
+    required this.phone,
+    required this.age,
+    required this.gender,
+    required this.role,
+    required this.traineeFavoriteMeals,
+    required this.traineeFavoriteWorkouts,
     required this.profileImageUrl,
-    required this.premium,
     this.height,
+    this.dietPreferenceType,
+    this.exerciseFrequencyType,
+    this.workoutIntensity,
+    this.isPremium,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

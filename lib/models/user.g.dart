@@ -8,15 +8,26 @@ part of 'user.dart';
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return User(
-    userID: json['userID'] as int?,
+    userID: json['userID'] as int,
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     email: json['email'] as String,
-    age: json['age'] as int?,
-    phone: json['phone'] as String?,
+    phone: json['phone'] as String,
+    age: json['age'] as int,
+    gender: json['gender'] as int,
+    role: Role.fromJson(json['role'] as Map<String, dynamic>),
+    traineeFavoriteMeals: (json['traineeFavoriteMeals'] as List<dynamic>)
+        .map((e) => Meal.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    traineeFavoriteWorkouts: (json['traineeFavoriteWorkouts'] as List<dynamic>)
+        .map((e) => Workout.fromJson(e as Map<String, dynamic>))
+        .toList(),
     profileImageUrl: json['profileImageUrl'] as String?,
-    premium: json['premium'] as bool?,
     height: (json['height'] as num?)?.toDouble(),
+    dietPreferenceType: json['dietPreferenceType'] as int?,
+    exerciseFrequencyType: json['exerciseFrequencyType'] as int?,
+    workoutIntensity: (json['workoutIntensity'] as num?)?.toDouble(),
+    isPremium: json['isPremium'] as bool?,
   );
 }
 
@@ -25,9 +36,16 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'email': instance.email,
-      'age': instance.age,
       'phone': instance.phone,
-      'profileImageUrl': instance.profileImageUrl,
+      'age': instance.age,
+      'gender': instance.gender,
+      'role': instance.role,
+      'traineeFavoriteWorkouts': instance.traineeFavoriteWorkouts,
+      'traineeFavoriteMeals': instance.traineeFavoriteMeals,
       'height': instance.height,
-      'premium': instance.premium,
+      'dietPreferenceType': instance.dietPreferenceType,
+      'exerciseFrequencyType': instance.exerciseFrequencyType,
+      'workoutIntensity': instance.workoutIntensity,
+      'isPremium': instance.isPremium,
+      'profileImageUrl': instance.profileImageUrl,
     };

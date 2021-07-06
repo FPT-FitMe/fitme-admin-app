@@ -9,11 +9,11 @@ part of 'role.dart';
 Role _$RoleFromJson(Map<String, dynamic> json) {
   return Role(
     roleID: json['roleID'] as int,
-    name: json['name'] as String,
+    roleName: json['roleName'] as String,
   );
 }
 
 Map<String, dynamic> _$RoleToJson(Role instance) => <String, dynamic>{
       'roleID': instance.roleID,
-      'name': instance.name,
+      'roleName': instance.roleName,
     };
