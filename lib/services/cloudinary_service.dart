@@ -1,10 +1,15 @@
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:fitme_admin_app/constants/cloudinary_preset.dart';
 import 'package:fitme_admin_app/repository/image_repository.dart';
 
 class CloudinaryService implements ImageRepository {
   static const String _cloudName = "fitme-media";
-  static const String _uploadPreset = "fitme-user";
-  final _cloudinary = CloudinaryPublic(_cloudName, _uploadPreset, cache: false);
+  final String preset;
+  late final _cloudinary;
+
+  CloudinaryService({this.preset = CloudinaryPreset.coach}) {
+    _cloudinary = CloudinaryPublic(_cloudName, preset, cache: false);
+  }
 
   @override
   Future<String?> uploadImage(String imagePath) async {

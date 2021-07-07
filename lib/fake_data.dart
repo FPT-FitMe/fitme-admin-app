@@ -84,11 +84,12 @@ final List<Exercise> fakeListExercises = [
 
 final List<Coach> fakeListCoaches = [
   Coach(
-    coachID: 1,
-    name: "Emily Blunt",
-    contact: "+8412345678",
-    introduction: "Lorem ipsum",
-  ),
+      coachID: 1,
+      name: "Emily Blunt",
+      contact: "+8412345678",
+      introduction: "Lorem ipsum",
+      imageUrl:
+          "https://images.unsplash.com/photo-1548932813-88dcf75599c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"),
   Coach(
     coachID: 2,
     name: "Rohit Reddy",

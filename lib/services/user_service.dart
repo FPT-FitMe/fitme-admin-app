@@ -8,11 +8,8 @@ class UserService implements UserRepository {
 
   @override
   Future<List<User>> getAllUsers() async {
-    List<User> users;
     final response = await dio.get('/users');
-    List listUsers = response.data;
-    users = listUsers.map((user) => User.fromJson(user)).toList();
-    return users;
+    return (response.data as List).map((user) => User.fromJson(user)).toList();
   }
 
   @override
