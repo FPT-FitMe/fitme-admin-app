@@ -40,6 +40,7 @@ dependencies:
   cloudinary_public: ^0.8.1+1
   shared_preferences: ^2.0.6
   pull_to_refresh: ^2.0.0
+  dropdown_search: ^0.6.3
 
 dev_dependencies:
   build_runner: ^2.0.5
