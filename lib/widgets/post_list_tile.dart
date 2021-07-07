@@ -6,8 +6,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class PostListTile extends StatelessWidget {
   final Post post;
   final bool isSearching;
-  const PostListTile({Key? key, required this.post, this.isSearching = false})
-      : super(key: key);
+  final Function? onDelete;
+  final Function? onRefresh;
+  const PostListTile({
+    Key? key,
+    required this.post,
+    this.isSearching = false,
+    this.onDelete,
+    this.onRefresh,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +23,15 @@ class PostListTile extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(
+          onTap: () async {
+            final postID = await Navigator.pushNamed(
               context,
               AppRoutes.detailPost,
               arguments: post,
             );
+            if (postID != null) {
+              return onRefresh!();
+            }
           },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(post.imageUrl),
@@ -34,6 +44,10 @@ class PostListTile extends StatelessWidget {
           ? null
           : <Widget>[
               IconSlideAction(
+                onTap: () {
+                  if (onDelete != null) return onDelete!();
+                  return null;
+                },
                 caption: 'Xóa',
                 color: Colors.red,
                 icon: Icons.delete,

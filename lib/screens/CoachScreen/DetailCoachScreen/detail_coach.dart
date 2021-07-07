@@ -242,6 +242,7 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
         _isUploadingImage = true;
       });
       _presenter.uploadImage(image.path);
+      _isLoading = true;
     }
   }
 
@@ -249,7 +250,7 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
     String name = _nameController.text;
     String contact = _contactController.text;
     String introduction = _introductionController.text;
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && _isLoading == false) {
       setState(() {
         _isLoading = true;
       });
@@ -260,7 +261,7 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
         introduction: introduction,
         imageUrl: _imageUrl != null
             ? _imageUrl.toString()
-            : "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png",
+            : "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
       );
       if (!_isUpdateCoach)
         _presenter.addCoach(coach);
@@ -291,6 +292,7 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
     setState(() {
       _isUploadingImage = false;
       _imageUrl = imageUrl;
+      _isLoading = false;
     });
   }
 

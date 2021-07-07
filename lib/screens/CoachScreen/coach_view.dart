@@ -4,4 +4,5 @@ abstract class CoachView {
   void loadCoaches(List<Coach> listCoaches);
   void refresh();
   void showFailedModal(String message);
+  void showEmptyList();
 }

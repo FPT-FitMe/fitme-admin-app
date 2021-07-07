@@ -1,31 +1,34 @@
 import 'package:fitme_admin_app/models/coach.dart';
+import 'package:fitme_admin_app/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'post.g.dart';
 
 @JsonSerializable()
 class Post {
-  final int postID;
-  final String contentBody;
+  final int? postID;
   final String contentHeader;
+  final String contentBody;
+  final Coach coachProfile;
+  final User? creator;
   final String imageUrl;
   final String name;
   final int readingTime;
-  final bool isActive;
-  final DateTime createdDate;
-  final DateTime lastUpdatedDate;
-  final Coach coachProfile;
+  final bool? isActive;
+  final DateTime? createdDate;
+  final DateTime? lastModifiedDate;
 
   Post({
-    required this.postID,
+    this.postID,
+    this.creator,
     required this.contentBody,
     required this.contentHeader,
     required this.imageUrl,
     required this.readingTime,
-    required this.isActive,
+    this.isActive,
     required this.name,
     required this.coachProfile,
-    required this.createdDate,
-    required this.lastUpdatedDate,
+    this.createdDate,
+    this.lastModifiedDate,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

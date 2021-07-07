@@ -8,28 +8,36 @@ part of 'post.dart';
 
 Post _$PostFromJson(Map<String, dynamic> json) {
   return Post(
-    postID: json['postID'] as int,
+    postID: json['postID'] as int?,
+    creator: json['creator'] == null
+        ? null
+        : User.fromJson(json['creator'] as Map<String, dynamic>),
     contentBody: json['contentBody'] as String,
     contentHeader: json['contentHeader'] as String,
     imageUrl: json['imageUrl'] as String,
     readingTime: json['readingTime'] as int,
-    isActive: json['isActive'] as bool,
+    isActive: json['isActive'] as bool?,
     name: json['name'] as String,
     coachProfile: Coach.fromJson(json['coachProfile'] as Map<String, dynamic>),
-    createdDate: DateTime.parse(json['createdDate'] as String),
-    lastUpdatedDate: DateTime.parse(json['lastUpdatedDate'] as String),
+    createdDate: json['createdDate'] == null
+        ? null
+        : DateTime.parse(json['createdDate'] as String),
+    lastModifiedDate: json['lastModifiedDate'] == null
+        ? null
+        : DateTime.parse(json['lastModifiedDate'] as String),
   );
 }
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'postID': instance.postID,
-      'contentBody': instance.contentBody,
       'contentHeader': instance.contentHeader,
+      'contentBody': instance.contentBody,
+      'coachProfile': instance.coachProfile,
+      'creator': instance.creator,
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'readingTime': instance.readingTime,
       'isActive': instance.isActive,
-      'createdDate': instance.createdDate.toIso8601String(),
-      'lastUpdatedDate': instance.lastUpdatedDate.toIso8601String(),
-      'coachProfile': instance.coachProfile,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastModifiedDate': instance.lastModifiedDate?.toIso8601String(),
     };

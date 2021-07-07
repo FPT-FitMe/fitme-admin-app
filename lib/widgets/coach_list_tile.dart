@@ -46,7 +46,7 @@ class CoachListTile extends StatelessWidget {
           : <Widget>[
               IconSlideAction(
                 onTap: () {
-                  if (onDelete != null) return onDelete!(coach.coachID);
+                  if (onDelete != null) return onDelete!();
                   return null;
                 },
                 caption: 'Xóa',

@@ -16,6 +16,7 @@ class CoachPresenter {
       List<Coach> listCoaches = await _coachRepository.getAllCoaches();
       _coachView.loadCoaches(listCoaches);
     } catch (e) {
+      _coachView.showEmptyList();
       print(e);
     }
   }

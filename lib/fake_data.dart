@@ -159,7 +159,6 @@ final List<Post> fakeListPosts = [
     isActive: true,
     name: "Tại sao bạn cần nước?",
     createdDate: DateTime.now(),
-    lastUpdatedDate: DateTime.now(),
     coachProfile: fakeListCoaches[0],
   )
 ];

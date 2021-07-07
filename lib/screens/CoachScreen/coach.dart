@@ -64,21 +64,24 @@ class _CoachScreenState extends State<CoachScreen> implements CoachView {
           : SmartRefresher(
               controller: _refreshController,
               onRefresh: refresh,
-              child: ListView.builder(
-                itemCount: listCoaches.length,
-                itemBuilder: (context, index) => CoachListTile(
-                  isSearching: false,
-                  coach: listCoaches[index],
-                  onDelete: _tapToDelete,
-                  onRefresh: refresh,
-                ),
-              ),
+              child: listCoaches.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: listCoaches.length,
+                      itemBuilder: (context, index) => CoachListTile(
+                        isSearching: false,
+                        coach: listCoaches[index],
+                        onDelete: () {
+                          _presenter.deleteCoach(
+                              int.parse(listCoaches[index].coachID.toString()));
+                        },
+                        onRefresh: refresh,
+                      ),
+                    )
+                  : Center(
+                      child: Text("Không có huấn luyện viên nào"),
+                    ),
             ),
     );
-  }
-
-  void _tapToDelete(int deleteCoachID) {
-    _presenter.deleteCoach(deleteCoachID);
   }
 
   @override
@@ -109,6 +112,15 @@ class _CoachScreenState extends State<CoachScreen> implements CoachView {
   void refresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
     _presenter.loadAllCoaches();
+    _refreshController.refreshCompleted();
+  }
+
+  @override
+  void showEmptyList() {
+    setState(() {
+      _isLoading = false;
+      listCoaches = [];
+    });
     _refreshController.refreshCompleted();
   }
 }
