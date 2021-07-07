@@ -1,6 +1,8 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/models/user.dart';
+import 'package:fitme_admin_app/screens/UserScreen/DetailUserScreen/detail_user_presenter.dart';
+import 'package:fitme_admin_app/screens/UserScreen/DetailUserScreen/detail_user_view.dart';
 import 'package:flutter/material.dart';
 
 class DetailUserScreen extends StatefulWidget {
@@ -10,8 +12,14 @@ class DetailUserScreen extends StatefulWidget {
   _DetailUserScreenState createState() => _DetailUserScreenState();
 }
 
-class _DetailUserScreenState extends State<DetailUserScreen> {
+class _DetailUserScreenState extends State<DetailUserScreen>
+    implements DetailUserView {
   late User user;
+  late DetailUserPresenter _presenter;
+
+  _DetailUserScreenState() {
+    _presenter = new DetailUserPresenter(this);
+  }
 
   final List<String> menuItems = ["Vô hiệu hóa tài khoản"];
 
@@ -28,27 +36,31 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
           style: TextStyle(),
         ),
         centerTitle: true,
-        actions: [
-          PopupMenuButton<String>(
-            offset: Offset(-20, 50),
-            onSelected: (value) {
-              if (value == "1") {}
-            },
-            itemBuilder: (BuildContext context) {
-              return menuItems
-                  .map((choice) => PopupMenuItem<String>(
-                        value: "1",
-                        child: Text(
-                          choice,
-                          style: TextStyle(
-                            color: AppColors.red500,
-                          ),
-                        ),
-                      ))
-                  .toList();
-            },
-          ),
-        ],
+        actions: user.email == "admin@fitme.vn"
+            ? null
+            : [
+                PopupMenuButton<String>(
+                  offset: Offset(-20, 50),
+                  onSelected: (value) {
+                    if (value == "1") {
+                      _presenter.disableUser(user.userID);
+                    }
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return menuItems
+                        .map((choice) => PopupMenuItem<String>(
+                              value: "1",
+                              child: Text(
+                                choice,
+                                style: TextStyle(
+                                  color: AppColors.red500,
+                                ),
+                              ),
+                            ))
+                        .toList();
+                  },
+                ),
+              ],
       ),
       resizeToAvoidBottomInset: true,
       body: Padding(
@@ -154,5 +166,10 @@ class _DetailUserScreenState extends State<DetailUserScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void backToUserScreen(int? deletedCoachID) {
+    Navigator.pop(context, deletedCoachID);
   }
 }

@@ -15,7 +15,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
     phone: json['phone'] as String,
     age: json['age'] as int,
     gender: json['gender'] as int,
-    role: Role.fromJson(json['role'] as Map<String, dynamic>),
+    role: json['role'] == null
+        ? null
+        : Role.fromJson(json['role'] as Map<String, dynamic>),
     traineeFavoriteMeals: (json['traineeFavoriteMeals'] as List<dynamic>)
         .map((e) => Meal.fromJson(e as Map<String, dynamic>))
         .toList(),

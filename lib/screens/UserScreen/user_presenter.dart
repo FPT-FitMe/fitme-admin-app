@@ -19,4 +19,13 @@ class UserPresenter {
       print(e);
     }
   }
+
+  void deleteUser(int id) async {
+    try {
+      await _userRepository.disableUser(id);
+      _userView.refresh();
+    } catch (e) {
+      print(e);
+    }
+  }
 }
