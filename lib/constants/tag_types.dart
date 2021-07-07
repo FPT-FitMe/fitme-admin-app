@@ -1,4 +1,4 @@
 class TagTypes {
-  static final int meal = 1;
-  static final int exercise = 2;
+  static final String meal = "meal";
+  static final String exercise = "exercise";
 }
