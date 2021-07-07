@@ -13,7 +13,7 @@ class User {
   final String phone;
   final int age;
   final int gender;
-  final Role role;
+  final Role? role;
   final List<Workout> traineeFavoriteWorkouts;
   final List<Meal> traineeFavoriteMeals;
   final double? height;
@@ -31,7 +31,7 @@ class User {
     required this.phone,
     required this.age,
     required this.gender,
-    required this.role,
+    this.role,
     required this.traineeFavoriteMeals,
     required this.traineeFavoriteWorkouts,
     required this.profileImageUrl,

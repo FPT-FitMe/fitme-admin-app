@@ -7,9 +7,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class UserListTile extends StatelessWidget {
   final User user;
   final bool isSearching;
+  final Function? onDelete;
+  final Function? onRefresh;
   const UserListTile({
     Key? key,
     required this.user,
+    this.onDelete,
+    this.onRefresh,
     this.isSearching = false,
   }) : super(key: key);
 
@@ -27,18 +31,29 @@ class UserListTile extends StatelessWidget {
           ),
           title: Text(user.firstName + " " + user.lastName),
           subtitle: Text('${user.email} - ${user.phone}'),
-          onTap: () {
-            Navigator.pushNamed(context, AppRoutes.detailUser, arguments: user);
+          onTap: () async {
+            final userID = await Navigator.pushNamed(
+              context,
+              AppRoutes.detailUser,
+              arguments: user,
+            );
+            if (userID != null) {
+              return onRefresh!();
+            }
           },
         ),
       ),
-      secondaryActions: isSearching
+      secondaryActions: isSearching || user.email == "admin@fitme.vn"
           ? null
           : <Widget>[
               IconSlideAction(
                 caption: 'Xóa',
                 color: AppColors.red500,
                 icon: Icons.delete,
+                onTap: () {
+                  if (onDelete != null) return onDelete!(user.userID);
+                  return null;
+                },
               ),
             ],
     );

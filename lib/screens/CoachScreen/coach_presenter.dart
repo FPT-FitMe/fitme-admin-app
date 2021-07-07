@@ -22,7 +22,7 @@ class CoachPresenter {
 
   void deleteCoach(int id) async {
     try {
-      int? deletedCoachID = await _coachRepository.disableCoach(id);
+      await _coachRepository.disableCoach(id);
       _coachView.refresh();
     } catch (e) {
       print(e);

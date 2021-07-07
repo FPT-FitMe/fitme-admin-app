@@ -13,8 +13,10 @@ class UserService implements UserRepository {
   }
 
   @override
-  bool disableUser() {
-    // TODO: implement disableUser
-    throw UnimplementedError();
+  Future<bool> disableUser(int userID) async {
+    final response = await dio.patch('/users/disable/$userID', data: [
+      {"op": "replace", "path": "/isActive", "value": false}
+    ]);
+    return response.statusCode == 200 ? true : false;
   }
 }

@@ -50,11 +50,13 @@ class _UserScreenState extends State<UserScreen> implements UserView {
           ? LoadingScreen()
           : SmartRefresher(
               controller: _refreshController,
-              onRefresh: _onRefresh,
+              onRefresh: refresh,
               child: ListView.builder(
                 itemCount: listUsers.length,
                 itemBuilder: (context, index) => UserListTile(
                   isSearching: false,
+                  onDelete: _tapToDelete,
+                  onRefresh: refresh,
                   user: listUsers[index],
                 ),
               ),
@@ -62,10 +64,8 @@ class _UserScreenState extends State<UserScreen> implements UserView {
     );
   }
 
-  void _onRefresh() async {
-    await Future.delayed(Duration(milliseconds: 1000));
-    _presenter.loadAllUsers();
-    _refreshController.refreshCompleted();
+  void _tapToDelete(int userID) {
+    _presenter.deleteUser(userID);
   }
 
   @override
@@ -74,5 +74,12 @@ class _UserScreenState extends State<UserScreen> implements UserView {
       _isLoading = false;
       listUsers = users;
     });
+  }
+
+  @override
+  void refresh() async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    _presenter.loadAllUsers();
+    _refreshController.refreshCompleted();
   }
 }
