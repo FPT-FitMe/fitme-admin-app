@@ -12,7 +12,11 @@ class UserPresenter {
   }
 
   void loadAllUsers() async {
-    List<User> listUsers = await _userRepository.getAllUsers();
-    _userView.loadUsers(listUsers);
+    try {
+      List<User> listUsers = await _userRepository.getAllUsers();
+      _userView.loadUsers(listUsers);
+    } catch (e) {
+      print(e);
+    }
   }
 }

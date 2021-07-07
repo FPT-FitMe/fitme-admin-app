@@ -20,7 +20,7 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen> {
   ];
   bool _isLoading = false;
   bool _isUpdateWorkout = false;
-  int _coachID = fakeListCoaches.first.coachID;
+  int? _coachID = fakeListCoaches.first.coachID;
   bool? _isPremium = false;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();

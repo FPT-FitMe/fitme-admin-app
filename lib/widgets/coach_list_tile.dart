@@ -6,11 +6,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class CoachListTile extends StatelessWidget {
   final Coach coach;
   final bool isSearching;
+  final Function? onDelete;
+  final Function? onRefresh;
 
   const CoachListTile({
     Key? key,
     required this.coach,
     this.isSearching = false,
+    this.onDelete,
+    this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -20,12 +24,15 @@ class CoachListTile extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(
+          onTap: () async {
+            final coachID = await Navigator.pushNamed(
               context,
               AppRoutes.detailCoach,
               arguments: coach,
             );
+            if (coachID != null) {
+              return onRefresh!();
+            }
           },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(coach.imageUrl),
@@ -38,6 +45,10 @@ class CoachListTile extends StatelessWidget {
           ? null
           : <Widget>[
               IconSlideAction(
+                onTap: () {
+                  if (onDelete != null) return onDelete!(coach.coachID);
+                  return null;
+                },
                 caption: 'Xóa',
                 color: Colors.red,
                 icon: Icons.delete,
