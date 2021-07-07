@@ -3,12 +3,12 @@ part 'tag.g.dart';
 
 @JsonSerializable()
 class Tag {
-  int tagID;
+  int? id;
   String name;
-  int type;
+  String? type;
 
   Tag({
-    required this.tagID,
+    this.id,
     required this.name,
     required this.type,
   });

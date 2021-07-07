@@ -1,7 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/tag_types.dart';
 import 'package:fitme_admin_app/models/tag.dart';
-import 'package:fitme_admin_app/screens/TagScreen/DetailTagDialog/detail_tag_dialog.dart';
 import 'package:fitme_admin_app/widgets/no_data_view.dart';
 import 'package:flutter/material.dart';
 
@@ -57,13 +56,7 @@ class SearchTagDelegate extends SearchDelegate {
     return ListView.builder(
       itemCount: results.length,
       itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) => DetailTagDialog(),
-            routeSettings: RouteSettings(arguments: results[index]),
-          );
-        },
+        onTap: () {},
         title: Text(results[index].name),
         leading: results[index].type == TagTypes.exercise
             ? Icon(CommunityMaterialIcons.arm_flex)

@@ -136,15 +136,15 @@ final List<Meal> fakeListMeals = [
 ];
 
 final List<Tag> fakeListMealTags = [
-  Tag(tagID: 1, name: "Sáng", type: TagTypes.meal),
-  Tag(tagID: 2, name: "Trưa", type: TagTypes.meal),
-  Tag(tagID: 3, name: "Chiều", type: TagTypes.meal),
+  Tag(id: 1, name: "Sáng", type: TagTypes.meal),
+  Tag(id: 2, name: "Trưa", type: TagTypes.meal),
+  Tag(id: 3, name: "Chiều", type: TagTypes.meal),
 ];
 
 final List<Tag> fakeListExerciseTags = [
-  Tag(tagID: 4, name: "Cardio", type: TagTypes.exercise),
-  Tag(tagID: 5, name: "Vai", type: TagTypes.exercise),
-  Tag(tagID: 6, name: "Ngực", type: TagTypes.exercise),
+  Tag(id: 4, name: "Cardio", type: TagTypes.exercise),
+  Tag(id: 5, name: "Vai", type: TagTypes.exercise),
+  Tag(id: 6, name: "Ngực", type: TagTypes.exercise),
 ];
 
 final List<Post> fakeListPosts = [
