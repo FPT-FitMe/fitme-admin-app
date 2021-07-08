@@ -183,9 +183,6 @@ class _TagScreenState extends State<TagScreen> implements TagView {
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override

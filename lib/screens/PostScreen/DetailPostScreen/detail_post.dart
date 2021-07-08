@@ -1,17 +1,15 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
-import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/menu_item.dart';
 import 'package:fitme_admin_app/models/post.dart';
+import 'package:fitme_admin_app/screens/PostScreen/DetailPostScreen/detail_post_presenter.dart';
 import 'package:fitme_admin_app/screens/PostScreen/DetailPostScreen/detail_post_view.dart';
 import 'package:fitme_admin_app/widgets/coach_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
-import 'detail_post_presenter.dart';
 
 class DetailPostScreen extends StatefulWidget {
   const DetailPostScreen({Key? key}) : super(key: key);
@@ -337,9 +335,6 @@ class _DetailPostScreenState extends State<DetailPostScreen>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override
@@ -354,9 +349,6 @@ class _DetailPostScreenState extends State<DetailPostScreen>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override

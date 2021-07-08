@@ -131,9 +131,6 @@ class _DetailTagDialogState extends State<DetailTagDialog>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override
@@ -144,9 +141,6 @@ class _DetailTagDialogState extends State<DetailTagDialog>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
     if (onRefresh != null) {
       tag.type == TagTypes.exercise
           ? onRefresh!(TagTypes.exercise)

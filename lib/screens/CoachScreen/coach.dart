@@ -103,9 +103,6 @@ class _CoachScreenState extends State<CoachScreen> implements CoachView {
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override

@@ -120,6 +120,7 @@ final List<Meal> fakeListMeals = [
     name: "Salad thịt gà",
     imageUrl:
         "https://images.unsplash.com/photo-1580013759032-c96505e24c1f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=825&q=80",
+    tags: [],
   ),
   Meal(
     mealID: 2,
@@ -132,6 +133,7 @@ final List<Meal> fakeListMeals = [
     name: "Ức gà nướng",
     imageUrl:
         "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    tags: [],
   ),
 ];
 

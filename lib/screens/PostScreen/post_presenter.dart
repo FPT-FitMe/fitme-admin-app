@@ -1,5 +1,4 @@
 import 'package:fitme_admin_app/di/injection.dart';
-import 'package:fitme_admin_app/models/coach.dart';
 import 'package:fitme_admin_app/models/post.dart';
 import 'package:fitme_admin_app/repository/post_repository.dart';
 import 'package:fitme_admin_app/screens/PostScreen/post_view.dart';

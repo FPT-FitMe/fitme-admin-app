@@ -229,9 +229,6 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   void _showImagePicker() async {
@@ -282,9 +279,6 @@ class _DetailCoachScreenState extends State<DetailCoachScreen>
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override
