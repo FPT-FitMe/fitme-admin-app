@@ -1,6 +1,5 @@
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/routes.dart';
-import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/post.dart';
 import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
 import 'package:fitme_admin_app/screens/PostScreen/SearchPostDelegate/search_post_delegate.dart';
@@ -104,9 +103,6 @@ class _PostScreenState extends State<PostScreen> implements PostView {
       title: message,
       buttons: [],
     ).show();
-    Future.delayed(new Duration(seconds: 2), () {
-      Navigator.pop(context);
-    });
   }
 
   @override

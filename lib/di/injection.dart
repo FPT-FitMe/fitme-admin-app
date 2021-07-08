@@ -2,12 +2,14 @@ import 'package:fitme_admin_app/constants/cloudinary_preset.dart';
 import 'package:fitme_admin_app/repository/auth_repository.dart';
 import 'package:fitme_admin_app/repository/coach_repository.dart';
 import 'package:fitme_admin_app/repository/image_repository.dart';
+import 'package:fitme_admin_app/repository/meal_repository.dart';
 import 'package:fitme_admin_app/repository/post_repository.dart';
 import 'package:fitme_admin_app/repository/tag_repository.dart';
 import 'package:fitme_admin_app/repository/user_repository.dart';
 import 'package:fitme_admin_app/services/auth_service.dart';
 import 'package:fitme_admin_app/services/cloudinary_service.dart';
 import 'package:fitme_admin_app/services/coach_service.dart';
+import 'package:fitme_admin_app/services/meal_service.dart';
 import 'package:fitme_admin_app/services/post_service.dart';
 import 'package:fitme_admin_app/services/tag_service.dart';
 import 'package:fitme_admin_app/services/user_service.dart';
@@ -36,4 +38,9 @@ class Injector {
   TagRepository get tagRepository => new TagService();
 
   PostRepository get postRepository => new PostService();
+
+  MealRepository get mealRepository => new MealService();
+
+  ImageRepository get mealImageRepository =>
+      new CloudinaryService(preset: CloudinaryPreset.meal);
 }

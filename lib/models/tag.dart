@@ -15,4 +15,15 @@ class Tag {
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
   Map<String, dynamic> toJson() => _$TagToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Tag &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          id == other.id;
+
+  @override
+  int get hashCode => name.hashCode ^ id.hashCode;
 }

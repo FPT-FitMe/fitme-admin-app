@@ -1,13 +1,20 @@
-import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/meal.dart';
+import 'package:fitme_admin_app/screens/MealScreen/DetailMealScreen/detail_meal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MealListTile extends StatelessWidget {
   final Meal meal;
   final bool isSearching;
-  const MealListTile({Key? key, required this.meal, this.isSearching = false})
-      : super(key: key);
+  final Function? onDelete;
+  final Function? onRefresh;
+  const MealListTile({
+    Key? key,
+    required this.meal,
+    this.isSearching = false,
+    this.onDelete,
+    this.onRefresh,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +23,16 @@ class MealListTile extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(
+          onTap: () async {
+            final mealID = await Navigator.push(
               context,
-              AppRoutes.detailMeal,
-              arguments: meal,
+              new MaterialPageRoute(
+                builder: (context) => new DetailMealScreen(meal: meal),
+              ),
             );
+            if (mealID != null) {
+              return onRefresh!();
+            }
           },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(meal.imageUrl),
@@ -35,6 +46,10 @@ class MealListTile extends StatelessWidget {
           ? null
           : <Widget>[
               IconSlideAction(
+                onTap: () {
+                  if (onDelete != null) return onDelete!();
+                  return null;
+                },
                 caption: 'Xóa',
                 color: Colors.red,
                 icon: Icons.delete,
