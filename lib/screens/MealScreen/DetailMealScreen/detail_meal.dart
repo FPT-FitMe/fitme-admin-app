@@ -152,6 +152,13 @@ class _DetailMealScreenState extends State<DetailMealScreen>
                       decoration: InputDecoration(
                         labelText: "Tên món ăn",
                       ),
+                      validator: MultiValidator(
+                        [
+                          RequiredValidator(errorText: "* Bắt buộc"),
+                          MaxLengthValidator(255,
+                              errorText: "Tối đa 255 ký tự"),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -271,6 +278,12 @@ class _DetailMealScreenState extends State<DetailMealScreen>
                       height: 20,
                     ),
                     MultiSelectDialogField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Phải có tối thiểu 1 tag';
+                        }
+                        return null;
+                      },
                       items: _listTags
                           .map((e) => MultiSelectItem(e, e.name))
                           .toList(),

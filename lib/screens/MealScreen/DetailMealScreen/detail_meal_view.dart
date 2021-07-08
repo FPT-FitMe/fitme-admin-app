@@ -6,7 +6,7 @@ abstract class DetailMealView {
   void showSuccessModal(Meal meal, String message);
   void updateImageUrl(String? imageUrl);
   void showFailedModal(String message);
-  void backToMealScreen(int? deletedPostID);
+  void backToMealScreen(int? deletedMealID);
   void loadCoaches(List<Coach> listCoaches);
   void loadTags(List<Tag> listTags);
 }

@@ -46,6 +46,8 @@ final List<Exercise> fakeListExercises = [
         "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     name: "Hít đất",
     videoUrl: "pushup.gif",
+    baseKcal: 3,
+    tags: [],
   ),
   Exercise(
     exerciseID: 2,
@@ -57,6 +59,8 @@ final List<Exercise> fakeListExercises = [
         "https://images.unsplash.com/photo-1594737625992-ef391874b13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
     name: "Vặn người",
     videoUrl: "pushup.gif",
+    baseKcal: 2,
+    tags: [],
   ),
   Exercise(
     exerciseID: 3,
@@ -68,6 +72,8 @@ final List<Exercise> fakeListExercises = [
         "https://images.unsplash.com/photo-1539794830467-1f1755804d13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     name: "Giãn cơ",
     videoUrl: "pushup.gif",
+    tags: [],
+    baseKcal: 1,
   ),
   Exercise(
     exerciseID: 4,
@@ -79,6 +85,8 @@ final List<Exercise> fakeListExercises = [
         "https://images.unsplash.com/photo-1567598508481-65985588e295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     name: "Squat",
     videoUrl: "pushup.gif",
+    baseKcal: 1,
+    tags: [],
   ),
 ];
 
