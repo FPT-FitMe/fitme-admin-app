@@ -1,5 +1,5 @@
-import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
+import 'package:fitme_admin_app/screens/ExerciseScreen/DetailExerciseScreen/detail_excercise.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -7,10 +7,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ExerciseListTile extends StatelessWidget {
   final Exercise exercise;
   final bool isSearching;
+  final Function? onDelete;
+  final Function? onRefresh;
   const ExerciseListTile({
     Key? key,
     required this.exercise,
     this.isSearching = false,
+    this.onDelete,
+    this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -20,12 +24,17 @@ class ExerciseListTile extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(
+          onTap: () async {
+            final exerciseID = await Navigator.push(
               context,
-              AppRoutes.detailExercise,
-              arguments: exercise,
+              new MaterialPageRoute(
+                builder: (context) =>
+                    new DetailExerciseScreen(exercise: exercise),
+              ),
             );
+            if (exerciseID != null) {
+              return onRefresh!();
+            }
           },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(
@@ -41,6 +50,10 @@ class ExerciseListTile extends StatelessWidget {
           ? null
           : <Widget>[
               IconSlideAction(
+                onTap: () {
+                  if (onDelete != null) return onDelete!();
+                  return null;
+                },
                 caption: 'Xóa',
                 color: Colors.red,
                 icon: Icons.delete,
