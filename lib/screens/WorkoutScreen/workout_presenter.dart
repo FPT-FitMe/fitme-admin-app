@@ -12,13 +12,13 @@ class WorkoutPresenter {
   }
 
   void loadAllWorkouts() async {
-    // try {
-    List<Workout> listWorkouts = await _workoutRepository.getAllWorkouts();
-    _workoutView.loadWorkouts(listWorkouts);
-    // } catch (e) {
-    // _workoutView.showEmptyList();
-    // print(e);
-    // }
+    try {
+      List<Workout> listWorkouts = await _workoutRepository.getAllWorkouts();
+      _workoutView.loadWorkouts(listWorkouts);
+    } catch (e) {
+      _workoutView.showEmptyList();
+      print(e);
+    }
   }
 
   void deleteWorkout(int id) async {
