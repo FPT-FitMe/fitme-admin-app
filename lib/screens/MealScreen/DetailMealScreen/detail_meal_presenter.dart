@@ -51,6 +51,7 @@ class DetailMealPresenter {
           updatedMeal, "Cập nhật ${meal.name} thành công");
     } catch (e) {
       print(e);
+      _detailMealView.showFailedModal("Lỗi khi cập nhật món ăn");
     }
   }
 
@@ -59,6 +60,7 @@ class DetailMealPresenter {
       int? deletedMealID = await _mealRepository.disableMeal(id);
       _detailMealView.backToMealScreen(deletedMealID);
     } catch (e) {
+      _detailMealView.showFailedModal("Lỗi khi xóa món ăn");
       print(e);
     }
   }

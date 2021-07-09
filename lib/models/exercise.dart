@@ -9,7 +9,6 @@ class Exercise {
   int baseRepPerRound;
   int baseKcal;
   String description;
-  int? exerciseOrder;
   String imageUrl;
   String name;
   String videoUrl;
@@ -24,7 +23,6 @@ class Exercise {
     required this.baseKcal,
     required this.baseRepPerRound,
     required this.description,
-    this.exerciseOrder,
     required this.imageUrl,
     required this.name,
     required this.videoUrl,

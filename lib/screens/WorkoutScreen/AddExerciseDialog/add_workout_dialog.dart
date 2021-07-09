@@ -1,13 +1,14 @@
 import 'package:fitme_admin_app/constants/routes.dart';
-import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:flutter/material.dart';
 
 class AddExerciseDialog extends StatefulWidget {
   final List<Exercise> selectedExercises;
+  final List<Exercise> allExercises;
   const AddExerciseDialog({
     Key? key,
     required this.selectedExercises,
+    required this.allExercises,
   }) : super(key: key);
 
   @override
@@ -16,13 +17,23 @@ class AddExerciseDialog extends StatefulWidget {
 
 class _AddExerciseDialogState extends State<AddExerciseDialog> {
   bool _isSearching = false;
-  List<Exercise> allExercises = fakeListExercises;
-  List<Exercise> searchResults = fakeListExercises;
-
+  List<Exercise> searchResults = [];
+  List<Exercise> selectedExercises = [];
+  List<Exercise> allExercises = [];
   TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    setState(() {
+      allExercises = widget.allExercises;
+      searchResults = widget.allExercises;
+      selectedExercises = widget.selectedExercises;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Exercise> selectedExercises = widget.selectedExercises;
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -96,7 +107,8 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
                     }
                     return CheckboxListTile(
                       title: Text(searchResults[index].name),
-                      subtitle: Text(searchResults[index].description),
+                      subtitle: Text(
+                          "${searchResults[index].baseKcal} cals - ${searchResults[index].baseRepPerRound} reps"),
                       controlAffinity: ListTileControlAffinity.trailing,
                       secondary: CircleAvatar(
                         backgroundImage:
@@ -105,11 +117,11 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
                       onChanged: (bool? value) {
                         if (value == false) {
                           setState(() {
-                            selectedExercises.remove(selectedExercises[index]);
+                            selectedExercises.remove(searchResults[index]);
                           });
                         } else {
                           setState(() {
-                            selectedExercises.add(allExercises[index]);
+                            selectedExercises.add(searchResults[index]);
                           });
                         }
                       },
