@@ -17,8 +17,9 @@ final List<Workout> fakeListWorkouts = [
         'https://images.unsplash.com/photo-1616803824305-a07cfbc8ea60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
     level: 1,
     name: '5 phút tập bụng',
-    coach: fakeListCoaches[0],
-    exercises: [],
+    coachProfile: fakeListCoaches[0],
+    tags: [],
+    workoutExercises: [],
   ),
   Workout(
     workoutID: 2,
@@ -30,8 +31,9 @@ final List<Workout> fakeListWorkouts = [
         'https://images.unsplash.com/photo-1608138404239-d2f557515ecb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
     level: 2,
     name: 'Tập cardio cùng Linh Nguyễn',
-    coach: fakeListCoaches[1],
-    exercises: [fakeListExercises[0]],
+    coachProfile: fakeListCoaches[1],
+    tags: [],
+    workoutExercises: [],
   ),
 ];
 
@@ -41,7 +43,6 @@ final List<Exercise> fakeListExercises = [
     baseDuration: 2,
     baseRepPerRound: 5,
     description: "Lorem Ipsum",
-    exerciseOrder: 1,
     imageUrl:
         "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     name: "Hít đất",
@@ -54,7 +55,6 @@ final List<Exercise> fakeListExercises = [
     baseDuration: 1,
     baseRepPerRound: 12,
     description: "Lorem Ipsum",
-    exerciseOrder: 2,
     imageUrl:
         "https://images.unsplash.com/photo-1594737625992-ef391874b13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
     name: "Vặn người",
@@ -67,7 +67,6 @@ final List<Exercise> fakeListExercises = [
     baseDuration: 1,
     baseRepPerRound: 12,
     description: "Lorem Ipsum",
-    exerciseOrder: 3,
     imageUrl:
         "https://images.unsplash.com/photo-1539794830467-1f1755804d13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     name: "Giãn cơ",
@@ -80,7 +79,6 @@ final List<Exercise> fakeListExercises = [
     baseDuration: 1,
     baseRepPerRound: 12,
     description: "Lorem Ipsum",
-    exerciseOrder: 4,
     imageUrl:
         "https://images.unsplash.com/photo-1567598508481-65985588e295?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     name: "Squat",

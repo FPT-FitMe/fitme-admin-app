@@ -1,5 +1,6 @@
 import 'package:fitme_admin_app/models/exercise.dart';
 import 'package:fitme_admin_app/models/workout.dart';
+import 'package:fitme_admin_app/models/workout_exercise.dart';
 import 'package:fitme_admin_app/screens/WorkoutScreen/AddExerciseDialog/add_workout_dialog.dart';
 import 'package:fitme_admin_app/widgets/no_data_view.dart';
 import 'package:flutter/material.dart';
@@ -31,14 +32,14 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          List<Exercise> selectedExercises = await showDialog(
+          List<WorkoutExercise> selectedExercises = await showDialog(
             context: context,
             builder: (context) => AddExerciseDialog(
-              selectedExercises: workout.exercises,
+              selectedExercises: workout.workoutExercises,
             ),
           );
           setState(() {
-            workout.exercises = selectedExercises;
+            workout.workoutExercises = selectedExercises;
           });
         },
         child: Icon(
@@ -46,18 +47,19 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen> {
           color: Colors.white,
         ),
       ),
-      body: workout.exercises.isNotEmpty
+      body: workout.workoutExercises.isNotEmpty
           ? ReorderableListView.builder(
-              itemBuilder: (context, index) =>
-                  _createReorderableExercise(workout.exercises[index]),
-              itemCount: workout.exercises.length,
+              itemBuilder: (context, index) => _createReorderableExercise(
+                  workout.workoutExercises[index].exerciseID),
+              itemCount: workout.workoutExercises.length,
               onReorder: (oldIndex, newIndex) {
                 setState(() {
                   if (oldIndex < newIndex) {
                     newIndex -= 1;
                   }
-                  final Exercise item = workout.exercises.removeAt(oldIndex);
-                  workout.exercises.insert(newIndex, item);
+                  final WorkoutExercise item =
+                      workout.workoutExercises.removeAt(oldIndex);
+                  workout.workoutExercises.insert(newIndex, item);
                 });
               },
             )

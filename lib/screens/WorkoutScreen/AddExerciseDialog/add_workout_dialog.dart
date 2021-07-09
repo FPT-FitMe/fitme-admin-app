@@ -1,10 +1,11 @@
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/exercise.dart';
+import 'package:fitme_admin_app/models/workout_exercise.dart';
 import 'package:flutter/material.dart';
 
 class AddExerciseDialog extends StatefulWidget {
-  final List<Exercise> selectedExercises;
+  final List<WorkoutExercise> selectedExercises;
   const AddExerciseDialog({
     Key? key,
     required this.selectedExercises,
@@ -22,7 +23,7 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
   TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    List<Exercise> selectedExercises = widget.selectedExercises;
+    List<WorkoutExercise> selectedExercises = widget.selectedExercises;
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -109,13 +110,15 @@ class _AddExerciseDialogState extends State<AddExerciseDialog> {
                           });
                         } else {
                           setState(() {
-                            selectedExercises.add(allExercises[index]);
+                            selectedExercises.add(WorkoutExercise(
+                                exerciseID: allExercises[index],
+                                exerciseOrder: selectedExercises.length - 1));
                           });
                         }
                       },
                       value: selectedExercises
-                          .where((element) =>
-                              element.name.contains(searchResults[index].name))
+                          .where((element) => element.exerciseID.name
+                              .contains(searchResults[index].name))
                           .isNotEmpty,
                     );
                   },

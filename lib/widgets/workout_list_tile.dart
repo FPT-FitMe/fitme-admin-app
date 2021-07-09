@@ -2,16 +2,21 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:fitme_admin_app/constants/colors.dart';
 import 'package:fitme_admin_app/constants/routes.dart';
 import 'package:fitme_admin_app/models/workout.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/DetailWorkoutScreen/detail_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class WorkoutListTile extends StatelessWidget {
   final Workout workout;
   final bool isSearching;
+  final Function? onDelete;
+  final Function? onRefresh;
   const WorkoutListTile({
     Key? key,
     required this.workout,
     this.isSearching = false,
+    this.onDelete,
+    this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -27,19 +32,23 @@ class WorkoutListTile extends StatelessWidget {
           ),
           title: Text(workout.name),
           subtitle: Text(
-              '${workout.estimatedDuration} phút - ${workout.estimatedCalories.toInt()} cals'),
+              '${workout.estimatedDuration} phút - ${workout.estimatedCalories.toString()} ${workout.estimatedCalories != null ? "cals" : ""}'),
           trailing: workout.isPremium
               ? Icon(
                   CommunityMaterialIcons.professional_hexagon,
                   color: AppColors.textColor,
                 )
               : null,
-          onTap: () {
-            Navigator.pushNamed(
+          onTap: () async {
+            final mealID = await Navigator.push(
               context,
-              AppRoutes.detailWorkout,
-              arguments: workout,
+              new MaterialPageRoute(
+                builder: (context) => new DetailWorkoutScreen(workout: workout),
+              ),
             );
+            if (mealID != null) {
+              return onRefresh!();
+            }
           },
         ),
       ),
@@ -59,8 +68,12 @@ class WorkoutListTile extends StatelessWidget {
                 },
               ),
               IconSlideAction(
+                onTap: () {
+                  if (onDelete != null) return onDelete!();
+                  return null;
+                },
                 caption: 'Xóa',
-                color: AppColors.red500,
+                color: Colors.red,
                 icon: Icons.delete,
               ),
             ],

@@ -1,9 +1,13 @@
 import 'package:fitme_admin_app/constants/routes.dart';
-import 'package:fitme_admin_app/fake_data.dart';
 import 'package:fitme_admin_app/models/workout.dart';
+import 'package:fitme_admin_app/screens/LoadingScreen/loading.dart';
 import 'package:fitme_admin_app/screens/WorkoutScreen/SearchWorkoutDelegate/search_workout_delegate.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/workout_presenter.dart';
+import 'package:fitme_admin_app/screens/WorkoutScreen/workout_view.dart';
 import 'package:fitme_admin_app/widgets/workout_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({Key? key}) : super(key: key);
@@ -12,9 +16,17 @@ class WorkoutScreen extends StatefulWidget {
   _WorkoutScreenState createState() => _WorkoutScreenState();
 }
 
-class _WorkoutScreenState extends State<WorkoutScreen> {
-  List<Workout> listWorkouts = fakeListWorkouts;
+class _WorkoutScreenState extends State<WorkoutScreen> implements WorkoutView {
+  late WorkoutPresenter _presenter;
+  List<Workout> _listWorkouts = [];
   bool _isLoading = true;
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  _WorkoutScreenState() {
+    _presenter = new WorkoutPresenter(this);
+    _presenter.loadAllWorkouts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +43,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               showSearch(
                 context: context,
                 delegate: SearchWorkoutDelegate(
-                  listWorkouts: listWorkouts,
+                  listWorkouts: _listWorkouts,
                 ),
               );
             },
@@ -47,12 +59,65 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
           color: Colors.white,
         ),
       ),
-      body: ListView.builder(
-        itemCount: listWorkouts.length,
-        itemBuilder: (context, index) => WorkoutListTile(
-          workout: listWorkouts[index],
-        ),
-      ),
+      body: _isLoading == true
+          ? LoadingScreen()
+          : SmartRefresher(
+              controller: _refreshController,
+              onRefresh: refresh,
+              child: _listWorkouts.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: _listWorkouts.length,
+                      itemBuilder: (context, index) => WorkoutListTile(
+                        isSearching: false,
+                        workout: _listWorkouts[index],
+                        onDelete: () {
+                          _presenter.deleteWorkout(int.parse(
+                              _listWorkouts[index].workoutID.toString()));
+                        },
+                        onRefresh: refresh,
+                      ),
+                    )
+                  : Center(
+                      child: Text("Không có khóa tập nào"),
+                    ),
+            ),
     );
+  }
+
+  @override
+  void loadWorkouts(List<Workout> listWorkouts) {
+    setState(() {
+      _isLoading = false;
+      this._listWorkouts = listWorkouts;
+    });
+  }
+
+  @override
+  void refresh() async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    _presenter.loadAllWorkouts();
+    _refreshController.refreshCompleted();
+  }
+
+  @override
+  void showEmptyList() {
+    setState(() {
+      _isLoading = false;
+      _listWorkouts = [];
+    });
+    _refreshController.refreshCompleted();
+  }
+
+  @override
+  void showFailedModal(String message) {
+    setState(() {
+      _isLoading = false;
+    });
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: message,
+      buttons: [],
+    ).show();
   }
 }

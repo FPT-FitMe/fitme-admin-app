@@ -20,7 +20,7 @@ class MealScreen extends StatefulWidget {
 class _MealScreenState extends State<MealScreen> implements MealView {
   late MealPresenter _presenter;
   bool _isLoading = true;
-  List<Meal> listMeals = [];
+  List<Meal> _listMeals = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -43,7 +43,7 @@ class _MealScreenState extends State<MealScreen> implements MealView {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: SearchMealDelegate(listMeals: listMeals),
+                delegate: SearchMealDelegate(listMeals: _listMeals),
               );
             },
           ),
@@ -64,15 +64,15 @@ class _MealScreenState extends State<MealScreen> implements MealView {
           : SmartRefresher(
               controller: _refreshController,
               onRefresh: refresh,
-              child: listMeals.isNotEmpty
+              child: _listMeals.isNotEmpty
                   ? ListView.builder(
-                      itemCount: listMeals.length,
+                      itemCount: _listMeals.length,
                       itemBuilder: (context, index) => MealListTile(
                         isSearching: false,
-                        meal: listMeals[index],
+                        meal: _listMeals[index],
                         onDelete: () {
                           _presenter.deleteMeal(
-                              int.parse(listMeals[index].mealID.toString()));
+                              int.parse(_listMeals[index].mealID.toString()));
                         },
                         onRefresh: refresh,
                       ),
@@ -88,7 +88,7 @@ class _MealScreenState extends State<MealScreen> implements MealView {
   void loadMeals(List<Meal> listMeals) {
     setState(() {
       _isLoading = false;
-      this.listMeals = listMeals;
+      this._listMeals = listMeals;
     });
   }
 
@@ -103,7 +103,7 @@ class _MealScreenState extends State<MealScreen> implements MealView {
   void showEmptyList() {
     setState(() {
       _isLoading = false;
-      listMeals = [];
+      _listMeals = [];
     });
     _refreshController.refreshCompleted();
   }

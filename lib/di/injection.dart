@@ -7,6 +7,7 @@ import 'package:fitme_admin_app/repository/meal_repository.dart';
 import 'package:fitme_admin_app/repository/post_repository.dart';
 import 'package:fitme_admin_app/repository/tag_repository.dart';
 import 'package:fitme_admin_app/repository/user_repository.dart';
+import 'package:fitme_admin_app/repository/workout_repository.dart';
 import 'package:fitme_admin_app/services/auth_service.dart';
 import 'package:fitme_admin_app/services/cloudinary_service.dart';
 import 'package:fitme_admin_app/services/coach_service.dart';
@@ -15,6 +16,7 @@ import 'package:fitme_admin_app/services/meal_service.dart';
 import 'package:fitme_admin_app/services/post_service.dart';
 import 'package:fitme_admin_app/services/tag_service.dart';
 import 'package:fitme_admin_app/services/user_service.dart';
+import 'package:fitme_admin_app/services/workout_service.dart';
 
 class Injector {
   static final Injector _singleton = new Injector._internal();
@@ -39,6 +41,8 @@ class Injector {
 
   ExerciseRepository get exerciseRepository => new ExerciseService();
 
+  WorkoutRepository get workoutRepository => new WorkoutService();
+
   ImageRepository get coachImageRepository =>
       new CloudinaryService(preset: CloudinaryPreset.coach);
 
@@ -50,4 +54,7 @@ class Injector {
 
   ImageRepository get exerciseImageRepository =>
       new CloudinaryService(preset: CloudinaryPreset.exercise);
+
+  ImageRepository get workoutImageRepository =>
+      new CloudinaryService(preset: CloudinaryPreset.workout);
 }
