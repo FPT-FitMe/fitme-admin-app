@@ -37,12 +37,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           PopupMenuButton<String>(
             offset: Offset(-20, 50),
             onSelected: (value) {
-              if (value == "Logout") {
+              if (value == "Đăng xuất") {
                 _logout();
               }
             },
             itemBuilder: (BuildContext context) {
-              return ['Logout']
+              return ['Đăng xuất']
                   .map((String choice) => PopupMenuItem<String>(
                         value: choice,
                         child: Text(choice),
