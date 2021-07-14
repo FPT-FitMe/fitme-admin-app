@@ -47,7 +47,7 @@ class UserListTile extends StatelessWidget {
           ? null
           : <Widget>[
               IconSlideAction(
-                caption: 'Xóa',
+                caption: 'Vô hiệu hóa',
                 color: AppColors.red500,
                 icon: Icons.delete,
                 onTap: () {
