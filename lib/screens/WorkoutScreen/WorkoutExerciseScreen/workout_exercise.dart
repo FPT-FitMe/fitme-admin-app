@@ -127,7 +127,12 @@ class _WorkoutExerciseScreenState extends State<WorkoutExerciseScreen>
       key: Key(exercise.exerciseID.toString()),
       trailing: IconButton(
         icon: Icon(Icons.delete),
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            _listSelectedExercises.removeWhere(
+                (element) => element.exerciseID == exercise.exerciseID);
+          });
+        },
       ),
       leading: Row(
         mainAxisSize: MainAxisSize.min,
