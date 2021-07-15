@@ -206,28 +206,34 @@ class _DetailWorkoutScreenState extends State<DetailWorkoutScreen>
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      controller: _estimatedCaloriesController,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        labelText: "Calories bài tập",
-                        suffixText: "cals",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _estimatedDurationController,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        suffixText: "phút",
-                        labelText: "Thời lượng bài tập",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    _isUpdateWorkout
+                        ? Column(
+                            children: [
+                              TextFormField(
+                                controller: _estimatedCaloriesController,
+                                readOnly: true,
+                                decoration: InputDecoration(
+                                  labelText: "Calories bài tập",
+                                  suffixText: "cals",
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                controller: _estimatedDurationController,
+                                readOnly: true,
+                                decoration: InputDecoration(
+                                  suffixText: "phút",
+                                  labelText: "Thời lượng bài tập",
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          )
+                        : Container(),
                     if (_listCoaches.isNotEmpty)
                       DropdownSearch<Coach>(
                         mode: Mode.BOTTOM_SHEET,
