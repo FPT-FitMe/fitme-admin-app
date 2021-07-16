@@ -117,7 +117,7 @@ class _DetailUserScreenState extends State<DetailUserScreen>
                     decoration: InputDecoration(
                       labelText: "Số điện thoại",
                     ),
-                    initialValue: user.phone.toString(),
+                    initialValue: user.phone != null ? user.phone.toString() : 'Chưa có thông tin',
                   ),
                   SizedBox(
                     height: 20,
